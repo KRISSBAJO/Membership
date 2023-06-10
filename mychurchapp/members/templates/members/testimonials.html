@@ -1,0 +1,39 @@
+{% extends 'members/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="mb-4">Testimonials</h1>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Image</th>
+                    <th scope="col">Text</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for testimonial in testimonials %}
+                    <tr>
+                        <td><img src="{{ testimonial.image.url }}" class="img-thumbnail" alt="Testimonial" style="width: 150px;"></td>
+                        <td>{{ testimonial.text }}</td>
+                        <td>{{ testimonial.author }}</td>
+                        <td>
+                            <a href="{% url 'testimonial_update' testimonial.pk %}" class="btn btn-sm btn-primary">Edit</a>
+                            <a href="{% url 'testimonial_delete' testimonial.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="4">No testimonials found.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="mb-4">
+            <a href="{% url 'testimonial_create' %}" class="btn btn-primary">Add Testimonial</a>
+        </div>
+    </div>
+{% endblock %}

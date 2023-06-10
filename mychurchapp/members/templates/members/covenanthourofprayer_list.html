@@ -1,0 +1,37 @@
+{% extends 'members/base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="mb-4">Covenant Hour of Prayer</h1>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Venue</th>
+            <th>Count</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for prayer in object_list %}
+            <tr>
+              <td>{{ prayer.date }}</td>
+              <td>{{ prayer.get_venue_display }}</td>
+              <td>{{ prayer.count }}</td>
+              <td>
+                <a href="{% url 'covenanthourofprayer_update' prayer.pk %}" class="btn btn-primary btn-sm">Edit</a>
+                <a href="{% url 'covenanthourofprayer_delete' prayer.pk %}" class="btn btn-danger btn-sm">Delete</a>
+              </td>
+            </tr>
+          {% empty %}
+            <tr>
+              <td colspan="4">No prayer records found.</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <a href="{% url 'covenanthourofprayer_create' %}" class="btn btn-primary">Add Prayer Record</a>
+  </div>
+{% endblock %}

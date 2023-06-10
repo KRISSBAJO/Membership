@@ -1,0 +1,16 @@
+{% extends "members/base.html" %}
+
+{% block content %}
+<div class="container">
+    <div class="card" style="width: 36rem;">
+        <div class="card-body">
+            <h2 class="card-title" style="color: #007bff;">{{ event.title }}</h2>
+            <h5 class="card-subtitle mb-2 text-muted">{{ event.date }}</h5>
+            <p class="card-text" style="color: #28a745;">{{ event.description|safe }}</p>
+            <p style="color: #dc3545;">Venue: {{ event.venue}}</p>
+            <p style="color: #ffc107;">Minister: {{ event.preacher}}</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

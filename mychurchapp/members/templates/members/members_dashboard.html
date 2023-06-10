@@ -1,0 +1,115 @@
+{% extends 'members/base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+  .card {
+    margin-bottom: 20px;
+  }
+    .card-img-top {
+        width: 40%;
+        height: 9vw;
+        object-fit: cover;
+    }
+    .card-body {
+        padding: 15px;
+    }
+    .card-title {
+        margin-bottom: 0;
+        font-size: 18px;
+    }
+    .card-text:last-child {
+        margin-bottom: 0;
+    }
+    .list-unstyled {
+        margin-bottom: 0;
+    }
+    a {
+        text-decoration: none;
+        color: #000;
+        font-weight: bold;
+        transition: 0.5s;
+      }
+      
+      a:hover {
+        color: #fff;
+        background-color: #000;
+        cursor: pointer;
+      }
+    .card-body ul {
+      padding: 0 10px;
+    }
+    .card-body ul li {
+      padding: 5px 10px;
+    }
+</style>
+<!-- Add Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+<!-- Add Font Awesome for Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card">
+        <img class="card-img-top" src="{% static 'img/default.png' %}" alt="Profile Picture">
+        <div class="card-body">
+          <h5 class="card-title">{{ user.first_name }} {{ user.last_name }}</h5>
+          <p class="card-text">Email: {{ user.email }}</p>
+          <p class="card-text">Phone: {{ user.contact_number }}</p>
+          <p class="card-text">Access Level: {{ user.groups.all | join:", " }}</p>
+        </div>
+        
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">Members Dashboard</h5>
+        </div>
+        <div class="card-body">
+            <div class="col">
+                <h5 class="list-group-item list-group-item-action" style="background-color: #323031; color: #323031; visibility: hidden;">Placeholder</h5>
+                <a href="" class="list-group-item list-group-item-action"><i class="fas fa-calendar-alt icon-space"></i>Announcements</a>
+                <a href="" class="list-group-item list-group-item-action"><i class="fas fa-images icon-space"></i>Join Covenant Hour of Prayer</a>
+                <a href="" class="list-group-item list-group-item-action"><i class="fas fa-comments icon-space"></i>Prayer Request</a>
+                <a href="" class="list-group-item list-group-item-action"><i class="fas fa-bullhorn icon-space"></i>Prophetic Focus for the Month of June</a>
+                <a href="" class="list-group-item list-group-item-action"><i class="fas fa-users-cog icon-space"></i>Weekly Activities</a>
+                <a href="" class="list-group-item list-group-item-action"><i class="fas fa-scroll icon-space"></i>Invite a Friend</a>
+            </div>
+        </div>
+            <!-- Midweek Service Sermon Card -->
+      </div>
+      <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Weekly Activities</h5>
+            <ul class="list-unstyled">
+                    <!-- Weekly Activities -->
+            <li><strong>Sunday Service:</strong> 10am</li>
+            <li><strong>Bible Study:</strong> Wednesday 7pm</li>
+            <li><strong>Prayer Meeting:</strong> Friday 6:30pm</li>
+            <li><strong>Youth Fellowship:</strong> Saturday 4pm</li>
+            <li><strong>Choir Rehearsal:</strong> Saturday 2pm</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Sunday Sermon Card -->
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Sunday Sermon</h5>
+            <p class="card-text">Title: Seek First the Kingdom of God</p>
+            <p class="card-text">Preacher: Reverend Jane Smith</p>
+            <p class="card-text">Summary: Reverend Jane takes us on a journey through the Scriptures to understand the importance of prioritizing God's Kingdom in our lives. By seeking God's Kingdom first, all other things will be added unto us.</p>
+            <!-- Read More Button -->
+            <a href="#" class="btn btn-secondary">Read More</a>
+        </div>
+    </div>
+    </div>
+    
+  </div>
+</div>
+{% endblock %}

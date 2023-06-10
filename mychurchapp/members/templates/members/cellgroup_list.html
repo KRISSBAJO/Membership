@@ -1,0 +1,44 @@
+<!-- cellgroup_list.html -->
+{% extends 'members/base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="mb-4">Cell Groups</h1>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Date Started</th>
+                    <th>Leader</th>
+                    <th>Secretary</th>
+                    <th>Assistant Leader</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for group in cellgroup_list %}
+                    <tr>
+                        <td>{{ group.name }}</td>
+                        <td>{{ group.date_started }}</td>
+                        <td>{{ group.leader }}</td>
+                        <td>{{ group.secretary }}</td>
+                        <td>{{ group.assistant_leader }}</td>
+                        <td>
+                            <a href="{% url 'cellgroup_edit' group.id %}" class="btn btn-sm btn-primary">Edit</a>
+                            <a href="{% url 'cellgroup_delete' group.id %}" class="btn btn-sm btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                {% if cellgroup_list.count == 0 %}
+                    <tr>
+                        <td colspan="6">No cell groups found.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+        <a href="{% url 'cellgroup_new' %}" class="btn btn-primary">Add Cell Group</a>
+    </div>
+    
+  </div>
+{% endblock %}

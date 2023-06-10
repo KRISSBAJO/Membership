@@ -1,0 +1,109 @@
+/* General styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+}
+.profile-picture {
+    width: 70px;
+    height: 70px;
+}
+#admin {
+    font-family: 'Georgia', serif;
+    font-size: 2em;
+    color: #739fce;
+}
+
+.group {
+    font-family: 'Georgia', serif;
+    font-size: 1.2em;
+    color: #353d46;
+}
+.tabbable{
+    margin-top: 20px;
+
+}
+.tabbable .nav-tabs{
+    background: #1eaae1;
+    border-radius: 5px;
+    border: none;
+}
+.tabbable .nav-tabs .nav-item .nav-link{
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    font-family: 'Georgia', serif;
+}
+.tabbable .nav-tabs .nav-item .nav-link:hover{
+    background: #2677ce;
+}
+.tabbable .nav-tabs .nav-item .nav-link.active{
+    background: #247cda;
+}
+.tabbable .tab-content{
+    background: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: -5px;
+}
+.tabbable .tab-content h3{
+    font-family: 'Georgia', serif;
+    font-size: 1.5em;
+    color: #247ddc;
+}
+.tabbable .tab-content p{
+    font-family: 'Georgia', serif;
+    font-size: 1.2em;
+    color: #007BFF;
+}
+.tabbable .tab-content .btn{
+    background: #000000;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    font-family: 'Georgia', serif;
+    color: #fff;
+    margin-top: 10px;
+}
+.tabbable .tab-content .btn:hover{
+    background: #1d71ca;
+}
+.tabbable .tab-content .btn:active{
+    background: #0069D9;
+}
+.tabbable .tab-content .btn:focus{
+    background: #0069D9;
+}
+.tabbable .tab-content .btn:visited{
+    background: #0069D9;
+}
+.tabbable .tab-content .btn-secondary{
+    background: #007BFF;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    font-family: 'Georgia', serif;
+    color: #fff;
+    margin-top: 10px;
+}
+.tabbable .tab-content .btn-secondary:hover{
+    background: #0069D9;
+}
+.tabbable .tab-content .btn-secondary:active{
+    background: #0069D9;
+}
+.tabbable .tab-content .btn-secondary:focus{
+    background: #0069D9;
+}
+.tabbable .tab-content .btn-secondary:visited{
+    background: #0069D9;
+}

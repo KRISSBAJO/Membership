@@ -1,0 +1,35 @@
+{% extends 'members/base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="mb-4">Newsletters</h1>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Date Created</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for newsletter in newsletters %}
+                    <tr>
+                        <td>{{ newsletter.subject }}</td>
+                        <td>{{ newsletter.date_created }}</td>
+                        <td>
+                            <a href="{% url 'newsletter_update' newsletter.pk %}" class="btn btn-sm btn-primary">Edit</a>
+                            <a href="{% url 'newsletter_delete' newsletter.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="3">No newsletters found.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'newsletter_create' %}" class="btn btn-primary">Create Newsletter</a>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,395 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'css/index.css' %}" rel="stylesheet">
+
+    <title>Winner Chapel International Nashville</title>
+    <style>
+      
+        </style>
+</head>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="{% static 'img/logo.png' %}" alt="WCIN logo" height="70" width="70">  <!-- Adjust height and width as needed -->
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'become_a_member' %}">Membership</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'events' %}">Events</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>                
+                <!-- Add other navigation items here -->
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <!-- Add your website sections here -->
+        <div class="jumbotron">
+            <h1 class="display-4 text-center">Winner Chapel International Nashville</h1>
+            <p class="lead text-center">Home of Signs & Wonders</p>
+        </div>
+    </div>
+    <div class="owl-carousel owl-theme" style="margin-bottom: 5rem; margin-top: 4rem;">
+        {% if is_default_carousel %}
+            {% for item in carousel_images %}
+                <div class="item">
+                    <img src="{% static item.image_url %}" alt="Default Image">
+                </div>
+            {% endfor %}
+        {% else %}
+            {% for item in carousel_images %}
+                <div class="item">
+                    <img src="{{ item.image.url }}" alt="{{ item.alt_text }}">
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    
+    <div class="container mt-4" id="section-cards">
+        <div class="row">
+            <!-- Faith Card -->
+            <div class="col-md-3">
+                <div class="card mb-4 shadow-sm custom-card">
+                    <img src="{% static 'img/faith.png' %}" class="card-img-top" alt="Faith">
+                    <div class="card-body">
+                        <h5 class="card-title">Unlimitecd Power Of Faith</h5>
+                        <p class="card-text">Faith is the most potent force in the whole universe;it’sthekeytoeverything in the kingdom.So, if thereis anything to...</p>
+                        <div class="btn-group">
+                            <a href="https://www.amazon.com/Unlimited-Latest-Release-Bishop-Oyedepo/dp/9782905763" class="btn btn-sm btn-outline-secondary">View More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Baptism Card -->
+            <div class="col-md-3">
+                <div class="card mb-4 shadow-sm custom-card">
+                    <img src="{% static 'img/baptism.jpg' %}" class="card-img-top" alt="Baptism">
+                    <div class="card-body">
+                        <h5 class="card-title">Baptism</h5>
+                        <p class="card-text">Experience the sacred ceremony of baptism. Understand its significance in marking the start of a journey that lasts for a lifetime.</p>
+                        <div class="btn-group">
+                            <a href="{% url 'baptism_registration' %}"  class="btn btn-sm btn-outline-secondary">View More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Sunday Sermons Card -->
+            <div class="col-md-3">
+                <div class="card mb-4 shadow-sm custom-card">
+                    <img src="{% static 'img/sermon.png' %}" class="card-img-top" alt="Sunday Sermons">
+                    <div class="card-body">
+                        <h5 class="card-title">Sunday Sermons</h5>
+                        <p class="card-text">Listen to uplifting Sunday sermons that teach love, compassion, and the teachings of the Bible. Find solace, healing, and wisdom.</p>
+                        <div class="btn-group">
+                            <a href="https://www.youtube.com/results?search_query=winners+chapel+nashville" class="btn btn-sm btn-outline-secondary">View More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Worship With Us Card -->
+            <div class="col-md-3">
+                <div class="card mb-4 shadow-sm custom-card">
+                    <img src="{% static 'img/worship.jpg' %}" class="card-img-top" alt="Worship with Us">
+                    <div class="card-body">
+                        <h5 class="card-title">Worship With Us</h5>
+                        <p class="card-text">Join us in worship and become part of our spiritual family. Find comfort, companionship, and a deeper understanding.</p>
+                        <div class="btn-group">
+                            <a href="" class="btn btn-sm btn-outline-secondary">Join Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container jumbotron bg-light">
+
+    <div class="row mt-4">
+        <!-- Prayer Request Card -->
+        
+        <div class="col-sm-4">
+            <div class="card my-card" style="height: 230px; width: 200px">
+                <div class="card-body">
+                    <h6 class="card-title">Prayer Request</h6>
+                    <p class="card-text">Submit your prayer request here.</p>
+                    <a href="{% url 'prayer_request' %}" class="btn btn-primary btn-sm">Submit Request</a>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Join CHOP Card -->
+        <div class="col-sm-4">
+            <div class="card my-card" style="height: 230px; width: 200px;">
+                <div class="card-body">
+                    <h6 class="card-title">Join CHOP</h6>
+                    <p class="card-text">Join us in prayer and worship.</p>
+                    <a href="https://us02web.zoom.us/j/81885271891" class="btn btn-primary btn-sm">Join Now</a>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Announcement Card -->
+        <div class="col-sm-4">
+            <div class="card my-card" style="height: 230px; width: 200px">
+                <div class="card-body">
+                    <h6 class="card-title">Announcement</h6>
+                    <p class="card-text">Stay updated with our latest announcements.</p>
+                    <a href="{% url 'announcement_display' %}" class="btn btn-primary btn-sm">View Announcements</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="container" id="section-map">
+        <div class="row">
+          <div class="col-md-6">
+            <div id="map"></div>
+          </div>
+          <div class="col-md-6">
+            <div class="address">
+              <h3>Winners Chapel International Nashville</h3>
+              <p>5270 Murfreesboro Rd, La Vergne, TN 37086</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    <div class="container mt-4">
+        <hr>
+        <h2 class="text-center" style="color: #023e8a; font-weight: bold;">Testimonials</h2>
+<hr>
+<div class="container">
+    <div class="row">
+        {% for testimonial in testimonials %}
+            <div class="col-md-4">
+                <div class="card mb-4 shadow-sm">
+                    <img src="{% if testimonial.image %}{{ testimonial.image.url }}{% else %}{% static testimonial.image_url %}{% endif %}" class="card-img-top" alt="Testimonial">
+                    <div class="card-body">
+                        <p class="card-text">{{ testimonial.text|truncatewords:11 }}</p>
+                        <h5 class="card-title">- {{ testimonial.author }}</h5>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'testimonial_detail' testimonial.pk %}" class="btn btn-sm btn-primary">View More</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+</div>
+</div>
+    <div class="footer-end">
+       
+        <div class="row">
+            <div class="col">
+                <p class="text-center">© 2023 Winner Chapel International Nashville. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer mt-auto py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h5>Get in Touch</h5>
+                <p>
+                    5270 Murfreesboro Road, Suite F La Vergne TN 37086<br>
+                    info@winnerschapelnashville.org<br>
+                    615 710 5704.
+                </p>
+            </div>
+            <div class="col">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Downloads</a></li>
+                    <li><a href="#">Podcast</a></li>
+                    <li><a href="#">Gallery</a></li>
+                    <li><a href="#">Give</a></li>
+                    <li><a href="#">Links & Forms</a></li>
+                </ul>
+            </div>
+            <div class="col">
+                <h5>Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#">David Oyedepo</a></li>
+                    <li><a href="#">Faith Oyedepo</a></li>
+                    <li><a href="#">David Abioye</a></li>
+                    <li><a href="#">Covenant University</a></li>
+                    <li><a href="#">Landmark University</a></li>
+                    <li><a href="#">Online Radio</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<!-- Rest of your HTML file -->
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Owl Carousel -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".owl-carousel").owlCarousel({
+                items: 4,
+                loop: true,
+                margin: 10,
+                autoplay: true,
+                autoplayTimeout: 4000, //2000ms = 2s;
+                autoplayHoverPause: true,
+            });
+        });
+    </script>
+    <script>
+        function initMap() {
+          var nashville = { lat: 36.1627, lng: -86.7816 }; // Nashville coordinates
+    
+          var map = new google.maps.Map(document.getElementById('map'), {
+            center: nashville,
+            zoom: 12
+          });
+    
+          var marker = new google.maps.Marker({
+            position: { lat: 36.1627, lng: -86.7816 }, // Coordinates of the location to pinpoint
+            map: map,
+            title: 'Location Name'
+          });
+        }
+      </script>
+      <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhm7DkmpbSvdhL5HHw01Pvn8hJiv6zMSM&callback=initMap"></script>
+      <script>
+      function initMap() {
+        // Specify the coordinates for the location
+        var location = { lat: 36.0189, lng: -86.5567 };
+      
+        // Create a map object and specify the container element
+        var map = new google.maps.Map(document.getElementById("map"), {
+          center: location,
+          zoom: 12,
+          styles: [
+            {
+              elementType: "geometry",
+              stylers: [{ color: "#f5f5f5" }]
+            },
+            {
+              elementType: "labels.icon",
+              stylers: [{ visibility: "off" }]
+            },
+            {
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#616161" }]
+            },
+            {
+              elementType: "labels.text.stroke",
+              stylers: [{ color: "#f5f5f5" }]
+            },
+            {
+              featureType: "administrative.land_parcel",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#bdbdbd" }]
+            },
+            {
+              featureType: "poi",
+              elementType: "geometry",
+              stylers: [{ color: "#eeeeee" }]
+            },
+            {
+              featureType: "poi",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#757575" }]
+            },
+            {
+              featureType: "poi.park",
+              elementType: "geometry",
+              stylers: [{ color: "#e5e5e5" }]
+            },
+            {
+              featureType: "poi.park",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#9e9e9e" }]
+            },
+            {
+              featureType: "road",
+              elementType: "geometry",
+              stylers: [{ color: "#ffffff" }]
+            },
+            {
+              featureType: "road.arterial",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#757575" }]
+            },
+            {
+              featureType: "road.highway",
+              elementType: "geometry",
+              stylers: [{ color: "#dadada" }]
+            },
+            {
+              featureType: "road.highway",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#616161" }]
+            },
+            {
+              featureType: "road.local",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#9e9e9e" }]
+            },
+            {
+              featureType: "transit.line",
+              elementType: "geometry",
+              stylers: [{ color: "#e5e5e5" }]
+            },
+            {
+              featureType: "transit.station",
+              elementType: "geometry",
+              stylers: [{ color: "#eeeeee" }]
+            },
+            {
+              featureType: "water",
+              elementType: "geometry",
+              stylers: [{ color: "#c9c9c9" }]
+            },
+            {
+              featureType: "water",
+              elementType: "labels.text.fill",
+              stylers: [{ color: "#9e9e9e" }]
+            }
+          ]
+        });
+      
+        // Add a marker for the specified location
+        var marker = new google.maps.Marker({
+          position: location,
+          map: map,
+          title: "5270 Murfreesboro Rd, La Vergne, TN 37086"
+        });
+      }
+      </script>
+
+    </body>
+</html>

@@ -1,0 +1,171 @@
+{% extends 'members/base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+    .profile-picture {
+        width: 70px;
+        height: 70px;
+    }
+    .list-group-item {
+        font-size: 14px; /* Smaller font size */
+    }
+    .list-group-item:hover {
+        background-color: #f8f9fa; /* Change background on hover */
+    }
+    .icon-space {
+        margin-right: 8px;
+    }
+    .button {
+        background-color: #323031;
+        border: none;
+        color: white;
+        padding: 5px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px; /* Adjust the font-size to make it smaller */
+        margin: 4px 2px;
+        cursor: pointer;
+        width: 48%; /* Giving width to ensure two buttons per row with some space */
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    
+    .announcements {
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+        padding: 0;
+        border: 1px solid #ddd;
+        margin: 0;
+    }
+    .announcements li {
+        flex: 0 0 50%;
+        padding: 5px;
+        border-bottom: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        text-align: center;
+    }
+.small-text {
+    font-size: 10px; /* Set the font size to be small */
+}
+</style>
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div class="col-sm-2 border-right py-2">
+                <a href="{% url 'update_profile_picture' %}">
+                    {% if user.profile.profile_picture %}
+                        <img src="{{ user.profile.profile_picture.url }}" class="img-thumbnail profile-picture rounded-circle" alt="Profile Picture">
+                    {% else %}
+                        <img src="{% static 'img/default.png' %}" class="img-thumbnail profile-picture rounded-circle" alt="Profile Picture">
+                    {% endif %}
+                </a>
+    
+                <h3 class="name">{{ user.first_name }} {{ user.last_name }}</h3>
+                <p class="mail">Email: {{ user.email }}</p>
+                <p class="phone">Phone: {{ user.contact_number }}</p>
+                <p class="group">Groups: {{ user.groups.all | join:", " }} Admin</p>
+    
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Finance</h5>
+                        <ul class="list-group">
+                            <li class="list-group-item small-text"><i class="fa fa-usd"></i> <a href="#">Manage Budgets</a></li>
+                            <li class="list-group-item small-text"><i class="fa fa-gift"></i> <a href="#">Review Donations</a></li>
+                            <li class="list-group-item small-text"><i class="fa fa-bar-chart"></i> <a href="#">Financial Reports</a></li>
+                            <li class="list-group-item small-text"><i class="fa fa-calendar"></i> <a href="#">Monthly Expenditures</a></li>
+                            <li class="list-group-item small-text"><i class="fa fa-plus-circle"></i> <a href="#">Enter Collection</a></li>
+                            <li class="list-group-item small-text"><i class="fa fa-plus-circle"></i> <a href="#">Enter Collection</a></li>
+                            <li class="list-group-item small-text"><i class="fa fa-plus-circle"></i> <a href="#">Enter Collection</a></li>
+                            <li class="list-group-item small-text"><i class="fa fa-line-chart"></i> <a href="#">Yearly Projections</a></li>
+                            <li class="list-group-item small-text"><i class="fa fa-plus-circle"></i> <a href="#">Enter Collection</a></li>
+                            <li class="list-group-item small-text"><i class="fa fa-edit"></i> <a href="#">Manage Collection</a></li>
+                            <li class="list-group-item small-text"><i class="fa fa-money"></i> <a href="#">Enter Expenses</a></li>
+                            <li class="list-group-item small-text"><i class="fa fa-book"></i> <a href="#">Manage Expenses</a></li>
+                            <li class="list-group-item small-text"><i class="fa fa-mobile"></i> <a href="#">Manage Tithly App</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Admin</h5>
+                        <ul class="list-group">
+                            <li class="list-group-item small-text"><i class="fa fa-users"></i> <a href="#">Create Cell Groups</a></li>
+                            <li class="list-group-item small-text"><i class="fa fa-list"></i> <a href="#">List Cell Groups</a></li>
+                            <li class="list-group-item small-text"><i class="fa fa-user"></i> <a href="#">Manage Users</a></li>
+                            <li class="list-group-item small-text"><i class="fa fa-cogs"></i> <a href="#">Manage Groups</a></li>
+                            <li class="list-group-item small-text"><i class="fa fa-wrench"></i> <a href="#">Site Settings</a></li>
+                            <li class="list-group-item small-text"><i class="fa fa-history"></i> <a href="#">Activity Logs</a></li>
+                            <li class="list-group-item small-text"><i class="fa fa-refresh"></i> <a href="#">Reset User Password</a></li>
+                            <li class="list-group-item small-text"><i class="fa fa-ban"></i> <a href="#">Block/Suspend Users</a></li>
+                            <li class="list-group-item small-text"><i class="fa fa-unlock-alt"></i> <a href="#">Grant Permission</a></li>
+                            <li class="list-group-item small-text"><i class="fa fa-lock"></i> <a href="#">Disable Permission</a></li>
+                            <li class="list-group-item small-text"><i class="fa fa-group"></i> <a href="#">Create Group</a></li>
+                        </ul>
+                    </div>
+                </div>
+    
+                <!-- Footer -->
+                <footer class="mt-5 py-3 bg-light" id="footer">
+                    <div class="container text-center">
+                        <p style="font-family: 'Georgia', serif; font-size: 1.5em; color: #007BFF;">
+                            "To liberate the world from all oppression of the devil"
+                        </p>
+                    </div>
+                </footer>
+            </div>
+    
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Announcements</h5>
+                        <ul class="list-unstyled announcements">
+                            <li><a href="#" class="button">Youth Retreat - April 27th</a></li>
+                            <li><a href="#" class="button">Charity Bake Sale - May 4th</a></li>
+                            <li><a href="#" class="button">Family Day - June 15th</a></li>
+                            <li><a href="#" class="button">Community Cleanup Day - June 22nd</a></li>
+                            <li><a href="#" class="button">Gospel Concert - July 2nd</a></li>
+                            <li><a href="#" class="button">Vacation Bible School - July 15-19</a></li>
+                        </ul>
+                    </div>
+                </div>
+    
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Weekly Activities</h5>
+                        <ul class="list-unstyled">
+                             <!-- Weekly Activities -->
+                    <li><strong>Sunday Service:</strong> 10am</li>
+                    <li><strong>Bible Study:</strong> Wednesday 7pm</li>
+                    <li><strong>Prayer Meeting:</strong> Friday 6:30pm</li>
+                    <li><strong>Youth Fellowship:</strong> Saturday 4pm</li>
+                    <li><strong>Choir Rehearsal:</strong> Saturday 2pm</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Invite a Friend</h5>
+                        <p class="card-text">Do you have a friend or contact whom you would like to invite to join our community? Extend them a heartfelt invitation to experience the love and fellowship of our community.</p>
+                        <a href="#" class="btn btn-primary">Refer a Friend</a>
+                    </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Sunday Sermon</h5>
+                            <p class="card-text">Title: Seek First the Kingdom of God</p>
+                            <p class="card-text">Preacher: Reverend Jane Smith</p>
+                            <p class="card-text">Summary: Reverend Jane takes us on a journey through the Scriptures to understand the importance of prioritizing God's Kingdom in our lives. By seeking God's Kingdom first, all other things will be added unto us.</p>
+                            <!-- Read More Button -->
+                            <a href="#" class="btn btn-secondary">Read More</a>
+                        </div>
+                    </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+    

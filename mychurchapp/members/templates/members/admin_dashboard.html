@@ -1,0 +1,194 @@
+
+{% extends "members/base.html" %}
+{% load static %}
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<style>
+ #home {
+    background-color: #007BFF;
+    color: #fff;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1em;
+    font-family: 'Georgia', serif;
+ }
+ #users{
+    background-color: #007BFF;
+    color: #fff;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1em;
+    font-family: 'Georgia', serif;
+ }
+ #group{
+    background-color: #007BFF;
+    color: #fff;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 1em;
+    font-family: 'Georgia', serif;
+ }
+    #events{
+        background-color: #007BFF;
+        color: #fff;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 1em;
+        font-family: 'Georgia', serif;
+    }
+    #reports{
+        background-color: #007BFF;
+        color: #fff;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 1em;
+        font-family: 'Georgia', serif;
+    }
+ 
+    
+</style>    
+
+<link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+<link href="{% static 'css/admin-portal.css' %}" rel="stylesheet">
+
+<h5 class="text-center" id="admin">Admin Dashboard</h5>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <div class="col-md-3 border-right">
+          
+                <a href="{% url 'update_profile_picture' %}">
+                    {% if user.profile.profile_picture %}
+                        <img src="{{ user.profile.profile_picture.url }}" class="img-thumbnail profile-picture rounded-circle" alt="Profile Picture">
+                    {% else %}
+                        <img src="{% static 'img/default.png' %}" class="img-thumbnail profile-picture rounded-circle" alt="Profile Picture">
+                    {% endif %}
+                </a>
+    
+                <h3 class="name">{{ user.first_name }} {{ user.last_name }}</h3>
+                <p class="mail">Email: {{ user.email }}</p>
+                <p class="phone">Phone: {{ user.contact_number }}</p>
+                <hr>
+                <p class="group text-center">Groups: {{ user.groups.all | join:", " }} Access</p>
+                <!-- Footer -->
+               
+    
+
+                 <!-- Sunday Sermon Card -->
+    <hr>
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Sunday Sermon</h5>
+            <p class="card-text">Title: Seek First the Kingdom of God</p>
+            <p class="card-text">Preacher: Reverend Jane Smith</p>
+            <p class="card-text">Summary: Reverend Jane takes us on a journey through the Scriptures to understand the importance of prioritizing God's Kingdom in our lives. By seeking God's Kingdom first, all other things will be added unto us.</p>
+            <!-- Read More Button -->
+            <a href="#" class="btn btn-secondary">Read More</a>
+        </div>
+    </div>
+    <hr>
+    <footer class="mt-5 py-3 bg-light" id="footer">
+        <div class="container text-center">
+            <p style="font-family: 'Georgia', serif; font-size: 1.5em; color: #007BFF;">
+                "To liberate the world from all oppression of the devil"
+            </p>
+        </div>
+    </footer>
+        </div>
+
+        <!-- Main Content with Tabs -->
+        <div class="col-md-9">
+            <div class="tabbable">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home" data-toggle="tab">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#users" data-toggle="tab">Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#groups" data-toggle="tab">Groups</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#events" data-toggle="tab">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#reports" data-toggle="tab">Reports</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="home">
+                        <ul class="list-group">
+                            <li class="list-group-item"><a href="#" class="button">Youth Retreat - April 27th</a></li>
+                            <li class="list-group-item"><a href="#" class="button">Charity Bake Sale - May 4th</a></li>
+                            <li class="list-group-item"><a href="#" class="button">Family Day - June 15th</a></li>
+                            <li class="list-group-item"><a href="#" class="button">Community Cleanup Day - June 22nd</a></li>
+                            <li class="list-group-item"><a href="#" class="button">Gospel Concert - July 2nd</a></li>
+                            <li class="list-group-item"><a href="#" class="button">Vacation Bible School - July 15-19</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="tab-pane" id="users">
+                        <ul class="list-group">
+                            <li class="list-group-item"><a href="{% url 'create_user' %}">Create Users</a></li>
+                            <li class="list-group-item"><a href="">Configure Users</a></li>
+                            <li class="list-group-item"><a href="">Disable Users</a></li>
+                            <li class="list-group-item"><a href="">Edit User Details</a></li>
+                            <li class="list-group-item"><a href="">Update Users</a></li>
+                            <li class="list-group-item"><a href="">User List</a></li>
+                            <li class="list-group-item"><a href="">Reset User Password</a></li>
+                            <li class="list-group-item"><a href="">Manage User Roles</a></li>
+                            <li class="list-group-item"><a href="">Monitor User Activity</a></li>
+                            <li class="list-group-item"><a href="">Send User Notifications</a></li>
+                            <li class="list-group-item"><a href="">Manage User Permissions</a></li>
+                        </ul>
+                        
+                    </div>
+                    <div class="tab-pane" id="groups">
+                        <ul class="list-group">
+                            <li class="list-group-item"><a href="{% url 'cellgroup_new' %}">Create Cell Group</a></li>
+                            <li class="list-group-item"><a href="{% url 'cellgroup_list' %}">List Cell Groups</a></li>
+                            <li class="list-group-item"><a href="">Edit Cell Group</a></li>
+                            <li class="list-group-item"><a href="">Delete Cell Group</a></li>
+                            <li class="list-group-item"><a href="">Assign Members to Cell Group</a></li>
+                            <li class="list-group-item"><a href="">Set Cell Group Permissions</a></li>
+                            <li class="list-group-item"><a href="">View Cell Group Members</a></li>
+                            <li class="list-group-item"><a href="">Send Message to Cell Group</a></li>
+                            <li class="list-group-item"><a href="">Cell Group Reports</a></li>
+                            <li class="list-group-item"><a href="">Cell Group Calendar</a></li>
+                        </ul>
+                        
+                    </div>
+                    <div class="tab-pane" id="events">
+                        <ul class="list-group">
+                            <li class="list-group-item"><a href="{% url 'event_create' %}">Add Events</a></li>
+                            <li class="list-group-item"><a href="{% url 'event_list' %}">Manage Events</a></li>
+                            <li class="list-group-item"><a href="">View Calendar</a></li>
+                            <li class="list-group-item"><a href="">Manage Event Categories</a></li>
+                            <li class="list-group-item"><a href="">Send Event Reminders</a></li>
+                            <li class="list-group-item"><a href="">Book Meeting Room</a></li>
+                            <li class="list-group-item"><a href="">Create Meeting</a></li>
+                        </ul>
+                        
+                    </div>
+                    <div class="tab-pane" id="reports">
+                       <ul>
+                        <li class="list-group-item"><a  href="{% url 'churchmember_list' %}">Manage Membership</a></li>
+                        <li class="list-group-item"><a href="{% url 'churchmember_new' %}">Create Members</a></li>
+                        <li class="list-group-item"><a href="{% url 'cellgroup_list' %}">Manage Cell Groups</a></li>
+                        <li class="list-group-item"><a href="{% url 'cellgroup_new' %}">Create Cell Groups</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Include Bootstrap's JavaScript library -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+{% endblock %}

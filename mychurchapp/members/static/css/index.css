@@ -1,0 +1,394 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.spacing {
+    margin-bottom: 30px;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    margin-top: 20px;
+} 
+
+
+.navbar {
+    background-color: #3a6ea5;
+}
+
+.navbar .nav-item .nav-link {
+    color: #000000;
+    transition: color 0.3s ease-in-out;
+    font-size: 1.2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    box-sizing: border-box;
+    padding: 0.5rem 1rem;
+    margin: 0 0.25rem;
+    
+}
+
+.navbar .nav-item .nav-link:hover {
+    color: #ff2200;
+}
+
+.jumbotron {
+    background-color: #f3532f;
+    color: #fefefe;
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    border-radius: 0.3rem;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+
+}
+
+.jumbotron h1 {
+    font-weight: bold;
+}
+
+.jumbotron p {
+    font-size: 1.2rem;
+}
+
+.footer h5 {
+    margin-bottom: 1rem;
+}
+
+.footer a {
+    color: #090908;
+    transition: color 0.3s ease-in-out;
+}
+
+.footer a:hover {
+    color: #ffffff;
+}
+
+.owl-carousel .item {
+    position: relative;
+}
+
+.owl-carousel .item img {
+    width: 450px;
+    height: 400px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    transition: transform 0.3s ease-in-out;
+
+}
+
+.owl-carousel .item .item-text {
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.owl-carousel .item .item-text:hover {
+    background-color: rgba(255, 221, 0, 0.5);
+    color: #3a6ea5;
+}
+
+.card-img-top {
+    width: 100%;   /* ensures the image takes the full width of the card */
+    height: 15vw;  /* set the height according to your needs */
+   /* ensures the images cover the area without distortion */
+}
+
+
+.card {
+    border: none;  /* remove border */
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);  /* add shadow */
+    transition: 0.3s;  /* add transition effect */
+}
+
+.card:hover {
+    box-shadow: 0px 12px 24px 0px rgba(0,0,0,0.2);  /* change shadow on hover */
+}
+
+.card-body {
+    background-color: #f8f9fa;  /* change background color */
+}
+
+.card-title {
+    color: #343a40;  /* change title color */
+    font-weight: bold;  /* make title bold */
+}
+
+.card-text {
+    color: #6c757d;  /* change text color */
+}
+
+.card-btn {
+    color: #fff;  /* change button text color */
+    background-color: #007bff;  /* change button background color */
+    transition: 0.3s;  /* add transition effect */
+}
+
+.card-btn:hover {
+    color: #fff;  /* keep button text color on hover */
+    background-color: #0056b3;  /* darken button background on hover */
+}
+.jumbotron, .container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.card {
+    margin: 15px;
+}
+.footer{
+    margin-top: 40px;
+    margin-bottom: 1px;
+    background-color: #f3532f;
+    color: #fefefe;
+
+}
+.footer-end {
+    height: 60px;  /* Adjust the height as needed */
+    background-color: #000000;
+    color: white;
+    text-align: center;
+}
+
+.footer .list-unstyled a {
+    color: #ffffff; /* White color */
+}
+
+.footer .list-unstyled a:hover {
+    color: #107edf; /* Light red color on hover */
+}
+
+.footer .list-unstyled a:active {
+    color: #0076eb; /* Darker red color when clicked */
+}
+
+.footer .list-unstyled a:visited {
+    color: #ffffff; /* Gray color after the link has been visited */
+}
+.testimonials {
+    background-color: #f8f9fa;
+    padding: 40px 0;
+
+}
+
+.testimonials .testimonial-item {
+    margin-bottom: 30px;
+    padding: 20px;
+    box-shadow: 0px 10px 20px 0px rgba(0,0,0,0.1);
+    background-color: #ffffff;
+    border-radius: 6px;
+    transition: all 0.3s ease-in-out;
+
+}
+
+.testimonials .testimonial-item h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #333333;
+    margin-bottom: 15px;
+}
+
+.testimonials .testimonial-item p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #666666;
+}
+
+.testimonials .testimonial-item .testimonial-author {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333333;
+    margin-top: 15px;
+}
+#map {
+    height: 400px; /* Adjust the height as needed */
+    width: 105%; /* Adjust the width as needed */
+  }
+  
+  .address {
+    height: 400px;
+    padding: 100px;
+    background-color: #f3532f;
+    color: #ffffff;
+  }
+
+  #section-cards{
+    margin-top: 5rem;
+    margin-bottom: 8rem;
+}
+#section-cards .card{
+border: none;
+transition: all 0.3s ease-in-out;
+}
+#section-map{
+margin-top: 5rem;
+margin-bottom: 5rem;
+}
+.custom-card:hover {
+transform: scale(1.03);
+box-shadow: 0px 0px 15px rgba(0,0,0,0.1);  /* Add a larger shadow on hover */
+transition: all 0.3s ease;
+
+}
+.custom-card .card-img-top{
+
+width: 100%;
+object-fit: content;
+height: 200px;
+
+}
+.card-title{
+font-size: 1.2rem;
+font-weight: bold;
+color: #bc4749;
+
+}
+.card-text{
+font-size: 0.9rem;
+color: #000;
+}
+.card-text p{
+font-size: 0.9rem;
+color: #000;
+}
+.btn-primary{
+background-color: #bc4749;
+border: none;
+}
+.btn-primary:hover{
+background-color: green;
+border: none;
+}
+
+.my-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: none;
+}
+
+.my-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.my-card .card-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.my-card .card-text {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.my-card .btn {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+html, body {
+    height: 100%;
+}
+.wrapper {
+    min-height: 50%;
+    display: flex;
+    flex-direction: column;
+}
+.content {
+    flex: 1;
+}
+.footer {
+    flex-shrink: 0;
+}
+.nav-color {
+    background-color: #fff;
+    border-bottom: 1px solid #e5e5e5;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+.brand-text {
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-top: 5px;
+    color: #000;
+
+}
+
+.brand-subtext {
+    font-size: 0.9rem;
+    color: red;
+    font-weight: bold;
+    font-size: 1.4rem;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+
+}
+#mandate {
+    height: 8vh;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.changing-text-content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    line-height: 70px;
+    text-align: center;
+    /* Starting state (moved to the right) */
+    transform: translateX(100%);
+    /* Apply our animation */
+    animation: scrollingText 20s linear infinite;
+    font-size: 3rem;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+}
+.changing-text-content:nth-child(2) {
+    /* Delay the animation */
+    animation-delay: 5s;
+}
+
+/* Animation */
+@keyframes scrollingText {
+    0%   { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+.changing-text-content {
+    display: none;
+}
+
+#base-header{
+    margin-top: 1px;
+    background-color: #f3532f;
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+
+  }   
+/* This class will make the text visible */
+.show {
+    display: block;
+}
+
+.owl-carousel .owl-item img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.owl-carousel .owl-item {
+    display: flex;
+    justify-content: center;
+}

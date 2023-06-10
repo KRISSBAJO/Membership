@@ -1,0 +1,106 @@
+{% extends 'members/base.html' %}
+
+{% block content %}
+<style>
+.jumbotron-fluid{
+    color: #000000;
+    background-color: #fbfbff;
+    padding: 2rem 0rem;
+    margin-bottom: 0rem;
+    border-radius: 0rem;
+    font-family: 'Montserrat', sans-serif;
+  
+    font-size: 1.6rem;  
+   
+
+}
+#baptism{
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    border-bottom: 1px solid #e5e5e5;
+    border-top: 1px solid #e5e5e5;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.6rem;
+    background-color: #e4b1ab;
+    color: #000000;
+    border-radius: 0.3rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    padding: 2rem 2rem;
+    
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+
+
+
+}
+#baptism h2{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #000000;
+    margin-bottom: 1rem;
+}
+#baptism h3{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #000000;
+    margin-bottom: 1rem;
+
+}
+
+
+
+
+</style>
+<div class="jumbotron jumbotron-fluid">
+
+    <div class="container mt-5" id="baptism">
+        <div class="row">
+            <div class="col-md-7">
+                <h2 class="mb-4">Baptism</h2>
+                <p>
+                    Baptism is immersion into water. It’s no surprise that baptism involves water. But why? Water is used as a metaphor for Jesus who described Himself as the Living Water (John 3). Water also represents the idea of cleansing (Ephesians 5). Baptism accomplishes both ideas in one beautiful display. By immersing a new believer into water, you see the picture of the person’s faith. He or she literally goes under the water in the same way that he or she has been immersed into their newfound faith in Jesus. The physical water represents the fountain of Living Water that now lives inside the Christian.
+                </p>
+                <p>
+                    The water of baptism also represents the cleansing that has occurred in the believer that has come through the forgiveness of sins accomplished by Christ alone through His blood shed on the cross. There are some traditions that do not immerse someone fully under the water and baptize instead by sprinkling or pouring of water. The symbolism is often the same, but the only examples of baptism we find in the Bible are by immersion. For this simple reason, Grace Valley Church practices immersion; but, on occasion, may alter that method for special circumstances.
+                </p>
+                <!-- Add more content or explanation if needed -->
+                <h2 class="mb-4">Further study on Baptism in the Bible.</h2>
+                <p>
+                    <a href="https://www.gotquestions.org/baptism-Bible.html" target="_blank">https://www.gotquestions.org/baptism-Bible.html</a>
+                </p>
+            </div>
+            <div class="col-md-5">
+                <h3 class="mb-4">Register for Baptism</h3>
+                <form action="{% url 'baptism_registration' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone:</label>
+                        <input type="text" class="form-control" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message:</label>
+                        <textarea class="form-control" id="message" name="message" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}
+

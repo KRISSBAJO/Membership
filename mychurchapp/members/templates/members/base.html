@@ -1,0 +1,138 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'css/index.css' %}" rel="stylesheet">
+
+    
+
+    <title>Winner Chapel International Nashville</title>
+    <style>
+ 
+
+    </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light nav-color">
+    <a class="navbar-brand" href="#">
+        <div class="d-flex align-items-center">
+            <img src="{% static 'img/logo.png' %}" alt="WCIN logo" height="80" width="80" class="mr-2">
+            <div>
+                <div class="brand-text">WCIN</div>
+                <div class="brand-subtext">Nashville</div>
+            </div>
+        </div>
+    </a>
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">  <!-- Apply the ml-auto class here -->
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'become_a_member' %}">Membership</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'events' %}">Events</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+            <!-- Add other navigation items here -->
+        </ul>
+    </div>
+</nav>
+
+<div class="col-12 jumbotron" id="base-header">
+
+<div class="container" id="mandate">
+    <p class="changing-text-content  mandate show" style="color: red; font-size: 30px;"> "The Mandate"</p>
+    <p class="changing-text-content mandate" style="color: red; font-size: 30px;"> "The Hour Has Come To Liberate The World from all The Opression Of the devil"</p>
+    <p class="changing-text-content mandate" style="color: red; font-size: 30px;"> "Through the Preaching of the Word of Faith"</p>
+    <p class="changing-text-content mandate" style="color: red; font-size: 30px;"> "And I am sending you"<span style="color: black;" >..Bishop David Oyedepo</span></p>
+  
+</div>
+</div>
+
+
+    <main>
+        <!-- Main contents -->
+        {% block content %}{% endblock %}
+    </main>
+    <div class="wrapper">
+    <footer class="footer mt-auto py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h5>Get in Touch</h5>
+                    <p>
+                        4825 Glenn Dale Rd, Bowie, MD 20720<br>
+                        info@winnerschapelmaryland.org<br>
+                        301-577-3800, 301-526-3382
+                    </p>
+                </div>
+                <div class="col">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Downloads</a></li>
+                        <li><a href="#">Podcast</a></li>
+                        <li><a href="#">Gallery</a></li>
+                        <li><a href="#">Give</a></li>
+                        <li><a href="#">Egroups</a></li>
+                        <li><a href="#">Links & Forms</a></li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <h5>Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">David Oyedepo</a></li>
+                        <li><a href="#">Faith Oyedepo</a></li>
+                        <li><a href="#">David Abioye</a></li>
+                        <li><a href="#">Covenant University</a></li>
+                        <li><a href="#">Landmark University</a></li>
+                        <li><a href="#">Online Radio</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </div>
+    
+    <!-- Rest of your HTML file -->
+    
+    
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            let idx = 0;
+            const texts = Array.from(document.querySelectorAll('.changing-text-content'));
+            
+            function changeText() {
+                texts.forEach((text, index) => {
+                    if (index === idx) {
+                        text.classList.add('show');
+                    } else {
+                        text.classList.remove('show');
+                    }
+                });
+                idx = (idx + 1) % texts.length; // loop around
+            }
+            
+            setInterval(changeText, 12000); // change every 8 seconds
+        </script>
+    </body>
+    </html>
+    

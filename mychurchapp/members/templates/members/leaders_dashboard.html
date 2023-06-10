@@ -1,0 +1,186 @@
+{% extends 'members/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<!-- Add Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+<!-- Add Font Awesome for Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<!-- Custom Styles -->
+<style>
+    .list-group-item {
+        font-size: 14px; /* Smaller font size */
+    }
+    .list-group-item:hover {
+        background-color: #f8f9fa; /* Change background on hover */
+    }
+    .icon-space {
+        margin-right: 8px;
+    }
+    .button {
+        background-color: #323031;
+        border: none;
+        color: white;
+        padding: 5px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px; /* Adjust the font-size to make it smaller */
+        margin: 4px 2px;
+        cursor: pointer;
+        width: 48%; /* Giving width to ensure two buttons per row with some space */
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    
+    .announcements {
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+        padding: 0;
+        border: 1px solid #ddd;
+        margin: 0;
+
+
+    }
+    
+    .announcements li {
+        flex: 0 0 50%;
+        padding: 5px;
+        border-bottom: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        text-align: center;
+
+    }
+    
+    
+</style>
+<!-- Main container -->
+<div class="container-fluid">
+    <div class="row">
+        <!-- Left Sidebar -->
+        <div class="col-md-3">
+            <div class="card">
+                <!-- Profile Picture -->
+                <a href="{% url 'update_profile_picture' %}">
+                    {% if user.profile.profile_picture %}
+                        <img src="{{ user.profile.profile_picture.url }}" class="card-img-top" alt="Profile Picture">
+                    {% else %}
+                        <img src="{% static 'img/default.png' %}" class="card-img-top" alt="Profile Picture">
+                    {% endif %}
+                </a>
+               <!-- User Details -->
+        <div class="card-body">
+            <h5 class="card-title">{{ user.first_name }} {{ user.last_name }}</h5>
+            <p class="card-text">Email: {{ user.email }}</p>
+            <p class="card-text">Phone: {{ user.contact_number }}</p>
+            <p class="card-text">Access Level: {{ user.groups.all|join:", " }}</p>
+        </div>
+    </div>
+    <!-- Link List -->
+    <div class="list-group my-4">
+       <!-- Attendance Links -->
+    <h5 href="" class="list-group-item list-group-item-action active" style="background-color: #323031;">Attendance</h5>
+    <div class="row">
+        <div class="col">
+            <a href="" class="list-group-item list-group-item-action"><i class="fas fa-users icon-space"></i>Add New Members</a>
+            <a href="{% url 'cellgroupmeeting_create' %}" class="list-group-item list-group-item-action"><i class="fas fa-calendar-check icon-space"></i>WSF Attendance</a>
+            <a href="{% url 'churchattendance_new' %}" class="list-group-item list-group-item-action"><i class="fas fa-church icon-space"></i>Enter Church Attendance</a>
+            <a href="{% url 'attendance_record_create' %}" class="list-group-item list-group-item-action"><i class="fas fa-user-check icon-space"></i>Enter Members Attendance</a>
+        </div>
+        <div class="col">
+            <a href="{% url 'covenanthourofprayer_create' %}" class="list-group-item list-group-item-action"><i class="fas fa-praying-hands icon-space"></i>Enter Chop Attendance</a>
+            <a href="{% url 'event_create' %}" class="list-group-item list-group-item-action"><i class="fas fa-calendar-plus icon-space"></i>Add Events</a>
+            <a href="{% url 'carousel_image_create' %}" class="list-group-item list-group-item-action"><i class="fas fa-images icon-space"></i>Add Website Images</a>
+            <a href="{% url 'testimonial_create' %}" class="list-group-item list-group-item-action"><i class="fas fa-comment-dots icon-space"></i>Add Testimonies</a>
+            <a href="{% url 'announcement_create' %}" class="list-group-item list-group-item-action"><i class="fas fa-bullhorn icon-space"></i>Add Announcements</a>
+        </div>
+    </div>
+
+     <!-- Records URLs-->
+<div class="row">
+    <div class="col">
+        <h5 href="" class="list-group-item list-group-item-action active" style="background-color: #323031; color: white">Records</h5>
+        <a href="{% url 'churchmember_list' %}" class="list-group-item list-group-item-action"><i class="fas fa-users icon-space"></i>Membership Records</a>
+        <a href="{% url 'cellgroupmeeting_list' %}" class="list-group-item list-group-item-action"><i class="fas fa-calendar icon-space"></i>WSF Records</a>
+        <a href="{% url 'churchattendance_list' %}" class="list-group-item list-group-item-action"><i class="fas fa-list-alt icon-space"></i>Service Attendance Records</a>
+        <a href="{% url 'attendance_record_list' %}" class="list-group-item list-group-item-action"><i class="fas fa-user-check icon-space"></i>Member Attendance List</a>
+        <a href="{% url 'covenanthourofprayer_list' %}" class="list-group-item list-group-item-action"><i class="fas fa-praying-hands icon-space"></i>Chop Attendance Records</a>
+    </div>
+    <div class="col">
+        <h5 class="list-group-item list-group-item-action" style="background-color: #323031; color: #323031; visibility: hidden;">Placeholder</h5>
+        <a href="{% url 'event_list' %}" class="list-group-item list-group-item-action"><i class="fas fa-calendar-alt icon-space"></i>Events</a>
+        <a href="{% url 'carousel_image_list' %}" class="list-group-item list-group-item-action"><i class="fas fa-images icon-space"></i>View Website Images</a>
+        <a href="{% url 'testimonials' %}" class="list-group-item list-group-item-action"><i class="fas fa-comments icon-space"></i>View Testimony Cards</a>
+        <a href="{% url 'announcement_list' %}" class="list-group-item list-group-item-action"><i class="fas fa-bullhorn icon-space"></i>View Announcements</a>
+        <a href="{% url 'cellgroup_list' %}" class="list-group-item list-group-item-action"><i class="fas fa-users-cog icon-space"></i>View Cell Groups</a>
+        <a href="{% url 'announcement_display' %}" class="list-group-item list-group-item-action"><i class="fas fa-scroll icon-space"></i>Announcements Records</a>
+    </div>
+</div>
+</div>
+</div>
+
+        <!-- Main Content -->
+<div class="col-md-9">
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Announcements</h5>
+            <ul class="list-unstyled announcements">
+                <li><a href="#" class="button">Youth Retreat - April 27th</a></li>
+                <li><a href="#" class="button">Charity Bake Sale - May 4th</a></li>
+                <li><a href="#" class="button">Family Day - June 15th</a></li>
+                <li><a href="#" class="button">Community Cleanup Day - June 22nd</a></li>
+                <li><a href="#" class="button">Gospel Concert - July 2nd</a></li>
+                <li><a href="#" class="button">Vacation Bible School - July 15-19</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Weekly Activities</h5>
+                    <ul class="list-unstyled">
+                         <!-- Weekly Activities -->
+                <li><strong>Sunday Service:</strong> 10am</li>
+                <li><strong>Bible Study:</strong> Wednesday 7pm</li>
+                <li><strong>Prayer Meeting:</strong> Friday 6:30pm</li>
+                <li><strong>Youth Fellowship:</strong> Saturday 4pm</li>
+                <li><strong>Choir Rehearsal:</strong> Saturday 2pm</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Invite a Friend</h5>
+                    <p class="card-text">Do you have a friend or contact whom you would like to invite to join our community? Extend them a heartfelt invitation to experience the love and fellowship of our community.</p>
+                    <a href="#" class="btn btn-primary">Refer a Friend</a>
+                </div>
+            </div>
+            <!-- Midweek Service Sermon Card -->
+        <!-- Midweek Service Sermon Card -->
+   
+
+    <!-- Sunday Sermon Card -->
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Sunday Sermon</h5>
+            <p class="card-text">Title: Seek First the Kingdom of God</p>
+            <p class="card-text">Preacher: Reverend Jane Smith</p>
+            <p class="card-text">Summary: Reverend Jane takes us on a journey through the Scriptures to understand the importance of prioritizing God's Kingdom in our lives. By seeking God's Kingdom first, all other things will be added unto us.</p>
+            <!-- Read More Button -->
+            <a href="#" class="btn btn-secondary">Read More</a>
+        </div>
+    </div>
+
+    </div>
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}

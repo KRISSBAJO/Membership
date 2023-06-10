@@ -1,0 +1,35 @@
+{% extends 'members/base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="mb-4">Service Groups</h1>
+    <a href="{% url 'servicegroup_new' %}" class="btn btn-primary mb-3">Add Service Group</a>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Date Started</th>
+          <th>Leader</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for group in service_groups %}
+          <tr>
+            <td>{{ group.name }}</td>
+            <td>{{ group.date_started }}</td>
+            <td>{{ group.leader }}</td>
+            <td>
+              <a href="{% url 'servicegroup_edit' group.id %}" class="btn btn-sm btn-primary">Edit</a>
+              <a href="{% url 'servicegroup_delete' group.id %}" class="btn btn-sm btn-danger">Delete</a>
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="4">No service groups found.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}

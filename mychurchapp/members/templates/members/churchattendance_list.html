@@ -1,0 +1,41 @@
+{% extends 'members/base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="mb-4">Church Attendance</h1>
+    <a href="{% url 'churchattendance_new' %}" class="btn btn-primary mb-3">Add Attendance Record</a>
+    <table class="table">
+        <thead>
+            <tr>
+              <th>Date</th>
+              <th>Men</th>
+              <th>Women</th>
+              <th>Children</th>
+              <th>Total Adult</th>
+              <th>Total Attendance</th>
+              <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for attendance in object_list %}
+              <tr>
+                <td>{{ attendance.date }}</td>
+                <td>{{ attendance.men }}</td>
+                <td>{{ attendance.women }}</td>
+                <td>{{ attendance.children }}</td>
+                <td>{{ attendance.men|add:attendance.women }}</td> <!-- Total Adult -->
+                <td>{{ attendance.total_attendees }}</td> <!-- Total Attendance -->
+                <td>
+                  <a href="{% url 'churchattendance_edit' attendance.pk %}" class="btn btn-sm btn-primary">Edit</a>
+                  <a href="{% url 'churchattendance_delete' attendance.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+              </tr>
+            {% empty %}
+              <tr>
+                <td colspan="7">No attendance records found.</td>
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+  </div>
+{% endblock %}

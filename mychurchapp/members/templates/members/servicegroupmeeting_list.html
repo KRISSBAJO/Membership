@@ -1,0 +1,38 @@
+{% extends 'members/base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="mb-4">Service Group Meetings</h1>
+    <a href="{% url 'servicegroupmeeting_new' %}" class="btn btn-primary mb-3">Add Meeting</a>
+    <div class="card shadow">
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Service Group</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for meeting in object_list %}
+              <tr>
+                <td>{{ meeting.date }}</td>
+                <td>{{ meeting.service_group }}</td>
+                <td>
+                  <a href="{% url 'servicegroupmeeting_edit' meeting.pk %}" class="btn btn-sm btn-primary">Edit</a>
+                  <a href="{% url 'servicegroupmeeting_delete' meeting.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+              </tr>
+            {% empty %}
+              <tr>
+                <td colspan="3">No meetings found.</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <a href="{% url 'servicegroupmeeting_new' %}" class="btn btn-sm btn-primary">Add Service Group Meeting</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

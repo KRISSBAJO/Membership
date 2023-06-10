@@ -1,0 +1,31 @@
+{% extends "members/base.html" %}
+{% load static %}
+{% block content %}
+    <style>
+       
+    </style>
+    <div class="container mt-5">
+        <div class="row">
+            {% for announcement in announcements %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    {% if announcement.image %}
+                        <img src="{{ announcement.image.url }}" class="card-img-top" alt="{{ announcement.title }}">
+                    {% elif announcement.image_url %}
+                        <img src="{% static announcement.image_url %}" class="card-img-top" alt="{{ announcement.title }}">
+                    {% endif %}
+
+                    <div class="card-body">
+                        <h5 class="card-title">{{ announcement.title }}</h5>
+                        <p class="card-text">{{ announcement.message|truncatechars:100 }}</p>
+                        {% if announcement.id %}
+                            <a href="{% url 'announcement_detail' announcement.id %}" class="btn btn-primary">View More</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endblock %}
+    

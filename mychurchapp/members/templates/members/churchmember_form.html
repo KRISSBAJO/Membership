@@ -1,0 +1,101 @@
+{% extends "members/base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<style>
+    #container {
+        max-width: 500px;
+        border: 1px solid #ccc;
+        padding: 20px;
+    }
+    .form-row {
+        margin-bottom: 10px;
+    }
+    .form-group {
+        margin-bottom: 0px;
+    }
+    .form-group label {
+        margin-bottom: 0px;
+    }
+    .form-group input {
+        margin-bottom: 0px;
+    }
+    #form{
+        margin-bottom: 0px;
+        color: #03045e;
+    }
+#memeber{
+    color: #bc4749;
+    font-weight: bold;
+}
+</style>
+<div class="container mt-5" id="container">
+    <h4 class="mb-3 text-center" id="memeber">Membership Form</h4>
+    
+    <!-- Include enctype attribute for file upload -->
+    <form method="POST" id="form" enctype="multipart/form-data">
+      {% csrf_token %}
+      
+      <!-- Profile Picture Input -->
+      <!-- Profile Picture Input -->
+<div class="form-row">
+    <div class="form-group col-md-6">
+        <label for="profile_picture">Profile Picture:</label>
+        <input type="file" name="profile_picture" id="profile_picture">
+    </div>
+</div>
+
+   
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        {{ form.first_name|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-6">
+        {{ form.last_name|as_crispy_field }}
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        {{ form.date_of_birth|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-6">
+        {{ form.gender|as_crispy_field }}
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        {{ form.address|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-6">
+        {{ form.email|as_crispy_field }}
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        {{ form.phone_number|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-6">
+        {{ form.cell_group|as_crispy_field }}
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        {{ form.service_group|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-6">
+        {{ form.is_new_member|as_crispy_field }}
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        {{ form.is_baptized|as_crispy_field }}
+      </div>
+      <div class="form-group col-md-6">
+        {{ form.is_confirmed_member|as_crispy_field }}
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+</div>
+{% endblock %}

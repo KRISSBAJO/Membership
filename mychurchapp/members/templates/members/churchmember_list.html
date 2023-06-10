@@ -1,0 +1,51 @@
+{% extends "members/base.html" %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h2 class="mb-4">Church Members</h2>
+        <table class="table table-striped table-bordered">
+            <a href="{% url 'churchmember_new' %}" class="btn btn-sm btn-primary">Add Members</a>
+            <thead class="thead-dark">
+                <tr>
+                    <th>Profile Picture</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Cell Group</th>
+                    <th>Service Group</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for member in object_list %}
+                    <tr>
+                        <td>
+                            {% if member.churchmemberprofile.profile_picture %}
+                                <img src="{{ member.churchmemberprofile.profile_picture.url }}" alt="{{ member.first_name }} {{ member.last_name }}" style="width: 50px; height: 50px;" class="rounded-circle">
+                            {% else %}
+                                <div class="bg-primary text-white d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                    {{ member.first_name|slice:":1" }}{{ member.last_name|slice:":1" }}
+                                </div>
+                            {% endif %}
+                        </td>
+                        <td>{{ member.first_name }}</td>
+                        <td>{{ member.last_name }}</td>
+                        <td>{{ member.email }}</td>
+                        <td>{{ member.phone_number }}</td>
+                        <td>{{ member.cell_group }}</td>
+                        <td>{{ member.service_group }}</td>
+                        <td>
+                            <a href="{% url 'churchmember_edit' member.pk %}" class="btn btn-sm btn-primary">Edit</a>
+                            <a href="{% url 'churchmember_delete' member.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="8" class="text-center">No church members found.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends 'members/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<style>
+    .card {
+        margin-top: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .card-body {
+        padding: 20px;
+    }
+    .card-header {
+        padding: 20px;
+    }
+    .container {
+        margin-top: 20px;
+        width: 49%;
+    }
+    h3 {
+        color: #007bff;
+    }
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+    .btn-primary:hover {
+        background-color: #0069d9;
+        border-color: #0062cc;
+    }
+</style>
+  <div class="container">
+    <h3 class="mb-4 text-center">Draft Newsletters</h3>
+    <div class="card shadow">
+      <div class="card-body">
+        <form method="post">
+          {% csrf_token %}
+          {{ form.media }}  {# Load CKEditor media files #}
+          {{ form|crispy }}
+          
+          <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}
