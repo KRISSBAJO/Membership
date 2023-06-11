@@ -1,0 +1,53 @@
+
+</style>
+
+<div class="container" id="container">
+  <h2 class="text-center" >{% if form.instance.pk %}Update{% else %}Create{% endif %} Tithly Offering</h2>
+  <hr>
+
+  <form method="post" class="row g-3">
+    {% csrf_token %}
+
+    <div class="form-group">
+      <label for="date">Date</label>
+      <input type="date" name="date" id="date" class="form-control" value="{{ form.instance.date|date:"Y-m-d" }}" required>
+
+    </div>
+
+    <div class="form-group">
+      <label for="offering">Offering</label>
+      <input type="number" name="offering" id="offering" class="form-control" value="{{ form.instance.offering }}" required>
+    </div>
+
+    <div class="form-group">
+      <label for="tithe">Tithe</label>
+      <input type="number" name="tithe" id="tithe" class="form-control" value="{{ form.instance.tithe }}" required>
+    </div>
+
+    <div class="form-group">
+      <label for="shiloh">Shiloh</label>
+      <input type="number" name="shiloh" id="shiloh" class="form-control" value="{{ form.instance.shiloh }}" required>
+    </div>
+
+    <div class="form-group">
+      <label for="thanksgiving">Thanksgiving</label>
+      <input type="number" name="thanksgiving" id="thanksgiving" class="form-control" value="{{ form.instance.thanksgiving }}" required>
+    </div>
+
+    <div class="form-group">
+      <label for="welfare">Welfare</label>
+      <input type="number" name="welfare" id="welfare" class="form-control" value="{{ form.instance.welfare }}" required>
+    </div>
+
+    <div class="form-group">
+      <label for="project">Project</label>
+      <input type="number" name="project" id="project" class="form-control" value="{{ form.instance.project }}" required>
+    </div>
+
+    <button type="submit" class="custom-btn">{% if form.instance.pk %}Update{% else %}Create{% endif %}</button>
+
+  </form>
+
+</div>
+
+{% endblock %}

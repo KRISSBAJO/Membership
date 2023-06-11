@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from .views import AdminDashboardView, AnnouncementCreateView, AnnouncementDeleteView, AnnouncementDetailView, AnnouncementDisplayView, AnnouncementListView, AnnouncementUpdateView, BecomeAMemberView, CarouselImageCreateView, CarouselImageDeleteView, CarouselImageListView, CarouselImageUpdateView, CellGroupCreateView, CellGroupDeleteView, CellGroupListView, CellGroupMeetingCreateView, CellGroupMeetingDeleteView, CellGroupMeetingListView, CellGroupMeetingUpdateView, CellGroupUpdateView, ChurchAttendanceCreateView, ChurchAttendanceDeleteView, ChurchAttendanceListView, ChurchAttendanceRecordCreateView, ChurchAttendanceRecordDeleteView, ChurchAttendanceRecordListView, ChurchAttendanceRecordUpdateView, ChurchAttendanceUpdateView, ChurchMemberCreateView, ChurchMemberDeleteView, ChurchMemberListView, ChurchMemberUpdateView, ConnectCardCreateView, ConnectCardSuccessView, CovenantHourOfPrayerCreateView, CovenantHourOfPrayerDeleteView, CovenantHourOfPrayerListView, CovenantHourOfPrayerUpdateView, CustomLoginView, CustomPasswordChangeDoneView, CustomPasswordChangeView, CustomUserCreateView, EmailVerificationSentView, EventCreateView, EventDeleteView, EventDetailView, EventListView, EventUpdateView, EventView, FinanceAdminDashboardView, IndexView, LeadersDashboardView, LogoutView, MemberAttendanceView, MembersDashboardView, NewsletterCreateView, NewsletterDeleteView, NewsletterListView, NewsletterUpdateView, PrayerRequestThanksView, PrayerRequestView, ProfilePictureUpdateView, ServiceGroupCreateView, ServiceGroupDeleteView, ServiceGroupListView, ServiceGroupMeetingCreateView, ServiceGroupMeetingDeleteView, ServiceGroupMeetingListView, ServiceGroupMeetingUpdateView, ServiceGroupUpdateView, TestimonialCreateView, TestimonialDeleteView, TestimonialDetailView, TestimonialListView, TestimonialUpdateView, activate, baptism_view, contact_thanks, register_attendance
+from .views import AdminDashboardView, AnnouncementCreateView, AnnouncementDeleteView, AnnouncementDetailView, AnnouncementDisplayView, AnnouncementListView, AnnouncementUpdateView, BecomeAMemberView, CarouselImageCreateView, CarouselImageDeleteView, CarouselImageListView, CarouselImageUpdateView, CellGroupCreateView, CellGroupDeleteView, CellGroupListView, CellGroupMeetingCreateView, CellGroupMeetingDeleteView, CellGroupMeetingListView, CellGroupMeetingUpdateView, CellGroupUpdateView, ChurchAttendanceCreateView, ChurchAttendanceDeleteView, ChurchAttendanceListView, ChurchAttendanceRecordCreateView, ChurchAttendanceRecordDeleteView, ChurchAttendanceRecordListView, ChurchAttendanceRecordUpdateView, ChurchAttendanceUpdateView, ChurchMemberCreateView, ChurchMemberDeleteView, ChurchMemberListView, ChurchMemberUpdateView, ConnectCardCreateView, ConnectCardSuccessView, CovenantHourOfPrayerCreateView, CovenantHourOfPrayerDeleteView, CovenantHourOfPrayerListView, CovenantHourOfPrayerUpdateView, CustomCategoryCreateView, CustomCategoryDeleteView, CustomCategoryListView, CustomCategoryUpdateView, CustomLoginView, CustomPasswordChangeDoneView, CustomPasswordChangeView, CustomUserCreateView, EmailVerificationSentView, EventCreateView, EventDeleteView, EventDetailView, EventListView, EventUpdateView, EventView, ExpenseCreateView, ExpenseDeleteView, ExpenseListView, ExpenseUpdateView, FinanceAdminDashboardView, FinanceCreateView, FinanceDeleteView, FinanceDetailView, FinanceListView, FinanceRecordReportView, FinanceUpdateView, IndexView, LeadersDashboardView, LogoutView, MemberAttendanceView, MembersDashboardView, NewsletterCreateView, NewsletterDeleteView, NewsletterListView, NewsletterUpdateView, PrayerRequestThanksView, PrayerRequestView, ProfilePictureUpdateView, ServiceGroupCreateView, ServiceGroupDeleteView, ServiceGroupListView, ServiceGroupMeetingCreateView, ServiceGroupMeetingDeleteView, ServiceGroupMeetingListView, ServiceGroupMeetingUpdateView, ServiceGroupUpdateView, TestimonialCreateView, TestimonialDeleteView, TestimonialDetailView, TestimonialListView, TestimonialUpdateView, TithlyOfferingCreateView, TithlyOfferingDeleteView, TithlyOfferingListView, TithlyOfferingUpdateView, activate, baptism_view, contact_thanks, register_attendance
 
 urlpatterns = [
     path('', IndexView.as_view(), name='index'),
@@ -106,6 +106,29 @@ urlpatterns = [
     
     path('member_attendance/', MemberAttendanceView.as_view(), name='member-attendance'),
     path('register_attendance/', register_attendance, name='register-attendance'),
+    path('finance/', FinanceListView.as_view(), name='finance_list'),
+    path('finance/<int:pk>/', FinanceDetailView.as_view(), name='finance_detail'),
+    path('finance/<int:pk>/delete/', FinanceDeleteView.as_view(), name='finance_delete'),
+    path('finance/create/', FinanceCreateView.as_view(), name='finance_create'),
+    path('finance/update/<int:pk>/', FinanceUpdateView.as_view(), name='finance_update'),
+    
+    path('tithly_offerings/', TithlyOfferingListView.as_view(), name='tithly_offering_list'),
+    path('tithly_offerings/create/', TithlyOfferingCreateView.as_view(), name='tithly_offering_create'),
+    path('tithly_offerings/update/<int:pk>/', TithlyOfferingUpdateView.as_view(), name='tithly_offering_update'),
+
+    path('tithly_offerings/delete/<int:pk>/', TithlyOfferingDeleteView.as_view(), name='tithly_offering_delete'),
+    
+    path('expenses/', ExpenseListView.as_view(), name='expense_list'),
+    path('expenses/create/', ExpenseCreateView.as_view(), name='expense_create'),
+    path('expenses/update/<int:pk>/', ExpenseUpdateView.as_view(), name='expense_update'),
+    path('expenses/delete/<int:pk>/', ExpenseDeleteView.as_view(), name='expense_delete'),
+    path('customcategories/', CustomCategoryListView.as_view(), name='customcategory_list'),
+    path('customcategories/create/', CustomCategoryCreateView.as_view(), name='customcategory_create'),
+    path('customcategories/update/<int:pk>/', CustomCategoryUpdateView.as_view(), name='customcategory_update'),
+    path('customcategories/delete/<int:pk>/', CustomCategoryDeleteView.as_view(), name='customcategory_delete'),
+    
+    path('finance_report/', FinanceRecordReportView.as_view(), name='finance_report'),
+    
 
     
     

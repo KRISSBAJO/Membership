@@ -1,4 +1,5 @@
 # forms.py
+import datetime
 from django import forms
 from .models import ChurchMember, ServiceGroupMeeting
 
@@ -218,3 +219,78 @@ class PrayerRequestForm(forms.Form):
     subject = forms.CharField(max_length=200)
     prayer_request = forms.CharField(widget=forms.Textarea(attrs={'rows': 2}))
 
+
+
+from django import forms
+from .models import Finance, CustomCategory, Expense
+
+
+from django import forms
+from django.core.exceptions import ValidationError
+from .models import Finance
+
+class FinanceForm(forms.ModelForm):
+    class Meta:
+        model = Finance
+        fields = '__all__'
+        
+        widgets = {'date': forms.DateInput(attrs={'type': 'date'})}
+    
+    def clean_date(self):
+        date = self.cleaned_data['date']
+        if date > datetime.date.today():
+            raise forms.ValidationError("Date cannot be in the future.")
+        return date
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        amount_fields = ['offering', 'tithe', 'shiloh', 'thanksgiving', 'welfare', 'project']
+        
+        for field_name in amount_fields:
+            amount = cleaned_data.get(field_name)
+            if amount is not None and amount < 0:
+                self.add_error(field_name, "Amount cannot be negative.")
+        
+        return cleaned_data
+
+       
+class CustomCategoryForm(forms.ModelForm):
+    class Meta:
+        model = CustomCategory
+        fields = ['name', 'amount']
+
+
+class ExpenseForm(forms.ModelForm):
+    class Meta:
+        model = Expense
+        fields = ['amount', 'description']
+        
+        
+        
+from django import forms
+from .models import TithlyOffering
+
+class TithlyOfferingForm(forms.ModelForm):
+    class Meta:
+        model = TithlyOffering
+        fields = ['date', 'offering', 'tithe', 'shiloh', 'thanksgiving', 'welfare', 'project']
+
+from django import forms
+from .models import Expense, CustomCategory
+
+class ExpenseForm(forms.ModelForm):
+    class Meta:
+        model = Expense
+        fields = ['date', 'amount', 'description']
+
+class CustomCategoryForm(forms.ModelForm):
+    class Meta:
+        model = CustomCategory
+        fields = ['name', 'amount', 'finance']
+
+
+from django import forms
+
+class ReportForm(forms.Form):
+    start_date = forms.DateField(widget=forms.SelectDateWidget)
+    end_date = forms.DateField(widget=forms.SelectDateWidget)

@@ -20,7 +20,7 @@ admin.site.register(CustomUser, CustomUserAdmin)
 
 from django.contrib import admin
 from .models import (Announcement, CarouselImage, CellGroup, CellGroupMeeting, ChurchAttendance, ChurchAttendanceRecord, ConnectCard,
-                     CovenantHourOfPrayer, Newsletter, ServiceGroup, ChurchMember, ServiceGroupMeeting, Event, Testimonial )
+                     CovenantHourOfPrayer, CustomCategory, Expense, Finance, Newsletter, ServiceGroup, ChurchMember, ServiceGroupMeeting, Event, Testimonial, TithlyOffering )
 from accounts.models import Profile
 
 @admin.register(CellGroup)
@@ -85,4 +85,20 @@ class AnnouncementAdmin(admin.ModelAdmin):
 
 @admin.register(ChurchMemberProfile)
 class ChurchMemberProfileAdmin(admin.ModelAdmin):
+    pass 
+
+@admin.register(Finance)
+class FinanceAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(Expense)
+class ExpenseAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(CustomCategory)
+class CustomCategoryAdmin(admin.ModelAdmin):
+    pass
+
+@admin.register(TithlyOffering)
+class TithlyOfferingAdmin(admin.ModelAdmin):
     pass

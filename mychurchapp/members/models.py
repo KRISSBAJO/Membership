@@ -316,3 +316,70 @@ class Announcement(models.Model):
 
     def __str__(self):
         return self.title
+
+
+from django.db import models
+
+class CustomCategory(models.Model):
+    name = models.CharField(max_length=100)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    finance = models.ForeignKey('Finance', on_delete=models.CASCADE)
+
+from django.db import models
+from decimal import Decimal
+
+
+from django.db import models
+from decimal import Decimal
+
+class Finance(models.Model):
+    date = models.DateField()
+    offering = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal(0.00))
+    tithe = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal(0.00))
+    shiloh = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal(0.00))
+    thanksgiving = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal(0.00))
+    welfare = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal(0.00))
+    project = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal(0.00))
+    total_income = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal(0.00))
+
+    def calculate_total_income(self):
+        self.total_income = (self.offering + self.tithe + self.shiloh +
+                             self.thanksgiving + self.welfare + self.project)
+
+    def save(self, *args, **kwargs):
+        self.calculate_total_income()
+        super(Finance, self).save(*args, **kwargs)
+        
+    def __str__(self):
+        return f"{self.date}"
+
+
+class Expense(models.Model):
+    date = models.DateField()
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    description = models.CharField(max_length=255)
+    
+    def __str__(self):
+        return f"{self.date} - {self.description}"
+
+class TithlyOffering(models.Model):
+    date = models.DateField()
+    offering = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    tithe = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    shiloh = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    thanksgiving = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    welfare = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    project = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    total_income = models.DecimalField(max_digits=10, decimal_places=2, editable=False, default=0)
+
+    def calculate_total_income(self):
+        self.total_income = sum([self.offering, self.tithe, self.shiloh,
+                                 self.thanksgiving, self.welfare, self.project])
+
+    def save(self, *args, **kwargs):
+        self.calculate_total_income()
+        super(TithlyOffering, self).save(*args, **kwargs)
+        
+    def __str__(self):
+        return f"{self.date}"
+    

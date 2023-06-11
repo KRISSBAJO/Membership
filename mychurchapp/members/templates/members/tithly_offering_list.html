@@ -1,0 +1,63 @@
+{% extends 'members/base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .small-text {
+        font-size: 14px;
+    }
+    .small-table {
+        font-size: 12px;
+    }
+    #create-tithly-offering {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+        width: 20%;
+        margin-left: 40%;
+    }
+</style>
+<h2 class="text-center">Tithly Offering List</h2>
+<div class="container">
+    <a href="{% url 'tithly_offering_create' %}" class="btn btn-sm btn-primary" id="create-tithly-offering">Create Tithly Offering</a>
+</div>
+
+<table class="container table table-bordered small-table">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Offering</th>
+            <th>Tithe</th>
+            <th>Shiloh</th>
+            <th>Thanksgiving</th>
+            <th>Welfare</th>
+            <th>Project</th>
+            <th>Total Income</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for tithly_offering in tithly_offerings %}
+            <tr style="background-color: #f9f9f9;">
+                <td>{{ tithly_offering.date }}</td>
+                <td>{{ tithly_offering.offering }}</td>
+                <td>{{ tithly_offering.tithe }}</td>
+                <td>{{ tithly_offering.shiloh }}</td>
+                <td>{{ tithly_offering.thanksgiving }}</td>
+                <td>{{ tithly_offering.welfare }}</td>
+                <td>{{ tithly_offering.project }}</td>
+                <td>{{ tithly_offering.total_income }}</td>
+                <td>
+                    <a href="{% url 'tithly_offering_update' tithly_offering.pk %}">Update</a> |
+                    <a href="{% url 'tithly_offering_delete' tithly_offering.pk %}">Delete</a>
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="9">No tithly offerings found.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

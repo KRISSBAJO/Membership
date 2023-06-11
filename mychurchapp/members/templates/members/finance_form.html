@@ -1,0 +1,117 @@
+{% extends "members/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+<style>
+    .form-group {
+        position: relative;
+        padding: 5px;
+    }
+   
+    .form-control {
+        padding-left: 20px;
+    }
+    #finance-create {
+        margin-top: 50px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        padding: 30px;
+        background-color: #fff;
+
+    }
+    #finance-create h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    #finance-create .btn {
+        width: 20%;
+        display: block;
+        margin: 0 auto;
+    }
+    #finance-create .row.g-3 {
+        margin-bottom: 0;
+    }
+
+    .row.g-3 > div {
+        margin-bottom: 1px;
+        margin-top: 1px;
+    }
+    .form-control {
+        height: calc(1.5em + .80rem + 6px);
+    }
+.head-create {
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    color: red;
+    font-weight: bold;
+   
+    margin-top: 2px;
+
+}
+</style>
+<div class="container mt-5" id="finance-create">
+    <h5 class="mb-4 text-center head-create">Create or Update Finance</h5>
+
+    {% if form.errors %}
+    <div class="alert alert-danger">
+        <ul>
+            {% for field, errors in form.errors.items %}
+                {% for error in errors %}
+                    <li><strong>{{ field }}:</strong> {{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <form action="{% if update %}{% url 'finance_update' object.pk %}{% else %}{% url 'finance_create' %}{% endif %}" method="post" class="row g-3">
+        {% csrf_token %}
+
+        <div class="col-md-6 form-group">
+            {{ form.date|as_crispy_field }}
+        </div>
+
+        <div class="col-md-6 form-group">
+            {{ form.offering|as_crispy_field }}
+        </div>  
+
+        <div class="col-md-6 form-group">
+            {{ form.tithe|as_crispy_field }}
+        </div>
+
+        <div class="col-md-6 form-group">
+            {{ form.shiloh|as_crispy_field }}
+        </div>
+
+        <div class="col-md-6 form-group">
+            {{ form.thanksgiving|as_crispy_field }}
+        </div>
+
+        <div class="col-md-6 form-group">
+            {{ form.welfare|as_crispy_field }}
+        </div>
+
+        <div class="col-md-6 form-group">
+            {{ form.project|as_crispy_field }}
+        </div>
+        <div class="col-md-6 form-group">
+            {{ form.project|as_crispy_field }}
+        </div>
+
+        <div class="col-md-6 form-group">
+            {{ form.total_income|as_crispy_field }}
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

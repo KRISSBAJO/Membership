@@ -1,0 +1,86 @@
+{% extends 'members/base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+  .container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding-top: 50px;
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  form {
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    font-weight: bold;
+  }
+
+  input[type="date"],
+  input[type="number"],
+  input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+  }
+
+  .custom-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .custom-btn:hover {
+    background-color: #0056b3;
+  }
+</style>
+
+<div class="container">
+  <h2>{% if form.instance.pk %}Update{% else %}Create{% endif %} Expense</h2>
+  <hr>
+
+  <form method="post">
+    {% csrf_token %}
+
+    <div class="form-group">
+      <label for="date">Date</label>
+      <input type="date" name="date" id="date" class="form-control" value="{{ form.instance.date|date:"Y-m-d" }}" required>
+    </div>
+
+    <div class="form-group">
+      <label for="amount">Amount</label>
+      <input type="number" name="amount" id="amount" class="form-control" value="{{ form.instance.amount }}" required>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input type="text" name="description" id="description" class="form-control" value="{{ form.instance.description }}" required>
+    </div>
+
+    <button type="submit" class="custom-btn">{% if form.instance.pk %}Update{% else %}Create{% endif %}</button>
+  </form>
+
+</div>
+
+{% endblock %}

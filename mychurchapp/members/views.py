@@ -906,3 +906,299 @@ def register_attendance(request):
     attendance_record.save()
     
     return JsonResponse({'status': 'success'})
+
+import datetime
+from django import forms
+from django.core.exceptions import ValidationError
+from django.views.generic import CreateView, UpdateView
+from .models import Finance
+from .forms import FinanceForm
+
+class FinanceCreateView(LoginRequiredMixin, CreateView):
+    model = Finance
+    form_class = FinanceForm
+    template_name = 'members/finance_form.html'
+    success_url = reverse_lazy('finance_list')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['update'] = False
+        return context
+
+    def form_valid(self, form):
+        # Validate date
+        if form.cleaned_data['date'] > datetime.date.today():
+            raise forms.ValidationError("Date cannot be in the future.")
+
+        # Validate amounts
+        for amount in [
+            form.cleaned_data['tithe'],
+            form.cleaned_data['shiloh'],
+            form.cleaned_data['thanksgiving'],
+            form.cleaned_data['welfare'],
+            form.cleaned_data['project'],
+        ]:
+            if amount < 0:
+                raise forms.ValidationError("Amount cannot be negative.")
+
+        # Set the created_by attribute
+        form.instance.created_by = self.request.user
+
+        return super().form_valid(form)
+
+
+from django.urls import reverse_lazy
+
+class FinanceUpdateView(UpdateView):
+    model = Finance
+    form_class = FinanceForm
+    template_name = 'members/finance_form.html'
+    success_url = reverse_lazy('finance_list') # Redirect back to finance list after successful update
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['update'] = True
+        return context
+
+    
+    def form_valid(self, form):
+        # Validate date
+        if form.cleaned_data['date'] > datetime.date.today():
+            raise forms.ValidationError("Date cannot be in the future.")
+        
+        # Validate amounts
+        for amount in [
+            form.cleaned_data['offering'],
+            form.cleaned_data['tithe'],
+            form.cleaned_data['shiloh'],
+            form.cleaned_data['thanksgiving'],
+            form.cleaned_data['welfare'],
+            form.cleaned_data['project'],
+        ]:
+            if amount < 0:
+                raise forms.ValidationError("Amount cannot be negative.")
+        
+        # Set the updated_by attribute
+        form.instance.updated_by = self.request.user
+        
+        return super().form_valid(form)
+
+
+class FinanceListView(ListView):
+    model = Finance
+    template_name = 'members/finance_list.html'
+    context_object_name = 'finances'
+
+
+class FinanceDetailView(DetailView):
+    model = Finance
+    template_name = 'members/finance_detail.html'
+
+class FinanceDeleteView(DeleteView):
+    model = Finance
+    template_name = 'members/finance_delete.html'
+    success_url = reverse_lazy('finance_list')  # Redirect to the list view after deletion
+
+
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from .models import TithlyOffering
+from .forms import TithlyOfferingForm
+class TithlyOfferingListView(ListView):
+    model = TithlyOffering
+    template_name = 'members/tithly_offering_list.html'
+    context_object_name = 'tithly_offerings'
+
+
+from django.views.generic.edit import CreateView
+
+from django.views.generic.edit import CreateView
+
+class TithlyOfferingCreateView(CreateView):
+    model = TithlyOffering
+    form_class = TithlyOfferingForm
+    template_name = 'members/tithly_offering_form.html'
+    success_url = reverse_lazy('tithly_offering_list')
+
+    def form_valid(self, form):
+        # Get the initial values for the form
+        initial = super().get_initial()
+
+        # Create the object
+        self.object = form.save(commit=False)
+        # Save the object
+        self.object.save()
+
+        return super().form_valid(form)
+
+
+    
+from django.views.generic.edit import UpdateView
+
+
+
+class TithlyOfferingUpdateView(UpdateView):
+    model = TithlyOffering
+    form_class = TithlyOfferingForm
+    template_name = 'members/tithly_offering_form.html'
+    success_url = reverse_lazy('tithly_offering_list')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+    def form_valid(self, form):
+    # Validate date
+        if form.cleaned_data['date'] > datetime.date.today():
+            raise forms.ValidationError("Date cannot be in the future.")
+
+        # Validate amounts
+        for amount in [
+            form.cleaned_data['offering'],
+            form.cleaned_data['tithe'],
+            form.cleaned_data['shiloh'],
+            form.cleaned_data['thanksgiving'],
+            form.cleaned_data['welfare'],
+            form.cleaned_data['project'],
+        ]:
+            if amount < 0:
+                raise forms.ValidationError("Amount cannot be negative.")
+
+        # Set the updated_by attribute
+        form.instance.updated_by = self.request.user
+
+        # Save the object
+        form.save()
+
+        return super().form_valid(form)
+
+    
+class TithlyOfferingDeleteView(DeleteView):
+    model = TithlyOffering
+    template_name = 'members/tithly_offering_delete.html'
+    success_url = reverse_lazy('tithly_offering_list')
+
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView
+from .models import Expense, CustomCategory
+from .forms import ExpenseForm, CustomCategoryForm  # Assuming you have created forms for these models
+
+class ExpenseCreateView(CreateView):
+    model = Expense
+    form_class = ExpenseForm
+    template_name = 'members/expense_form.html'
+    success_url = reverse_lazy('expense_list')
+
+class ExpenseListView(ListView):
+    model = Expense
+    template_name = 'members/expense_list.html'
+    context_object_name = 'expenses'
+
+class ExpenseUpdateView(UpdateView):
+    model = Expense
+    form_class = ExpenseForm
+    template_name = 'members/expense_form.html'
+    success_url = reverse_lazy('expense_list')
+
+class ExpenseDeleteView(DeleteView):
+    model = Expense
+    template_name = 'members/expense_confirm_delete.html'
+    success_url = reverse_lazy('expense_list')
+
+class CustomCategoryCreateView(CreateView):
+    model = CustomCategory
+    form_class = CustomCategoryForm
+    template_name = 'members/customcategory_form.html'
+    success_url = reverse_lazy('customcategory_list')
+
+class CustomCategoryListView(ListView):
+    model = CustomCategory
+    template_name = 'members/customcategory_list.html'
+    context_object_name = 'customcategories'
+
+class CustomCategoryUpdateView(UpdateView):
+    model = CustomCategory
+    form_class = CustomCategoryForm
+    template_name = 'members/customcategory_form.html'
+    success_url = reverse_lazy('customcategory_list')
+
+class CustomCategoryDeleteView(DeleteView):
+    model = CustomCategory
+    template_name = 'members/customcategory_confirm_delete.html'
+    success_url = reverse_lazy('customcategory_list')
+
+
+from django.views import View
+from django.shortcuts import render
+from .models import Finance, TithlyOffering
+from .forms import ReportForm
+
+class FinanceRecordReportView(View):
+    
+    def get(self, request):
+        form = ReportForm()
+        return render(request, 'members/finance_report.html', {'form': form})
+    
+    def post(self, request):
+        form = ReportForm(request.POST)
+        if form.is_valid():
+            start_date = form.cleaned_data['start_date']
+            end_date = form.cleaned_data['end_date']
+            
+            # Fetch records for the given date range
+            finances = Finance.objects.filter(date__range=[start_date, end_date])
+            tithly_offerings = TithlyOffering.objects.filter(date__range=[start_date, end_date])
+            expenses = Expense.objects.filter(date__range=[start_date, end_date])
+
+            # Calculate totals for finances
+            finance_totals = {
+                "offering": sum(f.offering for f in finances),
+                "tithe": sum(f.tithe for f in finances),
+                "shiloh": sum(f.shiloh for f in finances),
+                "thanksgiving": sum(f.thanksgiving for f in finances),
+                "welfare": sum(f.welfare for f in finances),
+                "project": sum(f.project for f in finances),
+                "total_income": sum(f.total_income for f in finances),
+            }
+
+            # Calculate totals for TithlyOffering
+            tithly_totals = {
+                "offering": sum(t.offering for t in tithly_offerings),
+                "tithe": sum(t.tithe for t in tithly_offerings),
+                "shiloh": sum(t.shiloh for t in tithly_offerings),
+                "thanksgiving": sum(t.thanksgiving for t in tithly_offerings),
+                "welfare": sum(t.welfare for t in tithly_offerings),
+                "project": sum(t.project for t in tithly_offerings),
+                "total_income": sum(t.total_income for t in tithly_offerings),
+            }
+            
+            # Calculate grand totals
+            grand_totals = {
+                "offering": finance_totals["offering"] + tithly_totals["offering"],
+                "tithe": finance_totals["tithe"] + tithly_totals["tithe"],
+                "shiloh": finance_totals["shiloh"] + tithly_totals["shiloh"],
+                "thanksgiving": finance_totals["thanksgiving"] + tithly_totals["thanksgiving"],
+                "welfare": finance_totals["welfare"] + tithly_totals["welfare"],
+                "project": finance_totals["project"] + tithly_totals["project"],
+                "total_income": finance_totals["total_income"] + tithly_totals["total_income"],
+            }
+
+            # Inside your post method after tithly_totals
+
+            # Calculate grand total expenses
+            grand_total_expenses = sum(e.amount for e in Expense.objects.filter(date__range=[start_date, end_date]))
+            # Calculate grand total net income
+            grand_total_net_income = grand_totals['total_income'] - grand_total_expenses
+
+            return render(request, 'members/finance_report.html', {
+                'form': form,
+                'finances': finances,
+                'tithly_offerings': tithly_offerings,
+                'finance_totals': finance_totals,
+                'tithly_totals': tithly_totals,
+                'grand_totals': grand_totals,
+                'grand_total_expenses': grand_total_expenses,
+                'grand_total_net_income': grand_total_net_income
+            })
+
+

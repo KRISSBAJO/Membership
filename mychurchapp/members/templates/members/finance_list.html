@@ -1,0 +1,65 @@
+{% extends 'members/base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .small-text {
+      font-size: 14px; /* adjust the font size as needed */
+    }
+  
+    .small-table {
+      font-size: 12px; /* adjust the font size as needed */
+    }
+  
+    #create-finance {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+        width: 20%;
+        margin-left: 40%;    
+    }
+</style>
+  <h2 class="text-center">Finance List</h2>
+  <div class="container">
+    <a href="{% url 'finance_create' %}" class="btn btn-sm btn-primary" id="create-finance">Create Finance</a>
+  </div>
+  <table class="container table table-bordered small-table">
+    <thead>
+      <tr>
+        <th style="border: 1px solid black;">Date</th>
+        <th style="border: 1px solid black;">Offering</th>
+
+        <th style="border: 1px solid black;">Tithe</th>
+        <th style="border: 1px solid black;">Shiloh</th>
+        <th style="border: 1px solid black;">Thanksgiving</th>
+        <th style="border: 1px solid black;">Welfare</th>
+        <th style="border: 1px solid black;">Project</th>
+        <th style="border: 1px solid black;">Total Income</th>
+        <th style="border: 1px solid black;">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for finance in finances %}
+        <tr style="background-color: #f9f9f9;">
+          <td style="border: 1px solid black;">{{ finance.date }}</td>
+          <td style="border: 1px solid black;">{{ finance.offering }}</td>
+          <td style="border: 1px solid black;">{{ finance.tithe }}</td>
+          <td style="border: 1px solid black;">{{ finance.shiloh }}</td>
+          <td style="border: 1px solid black;">{{ finance.thanksgiving }}</td>
+          <td style="border: 1px solid black;">{{ finance.welfare }}</td>
+          <td style="border: 1px solid black;">{{ finance.project }}</td>
+          <td style="border: 1px solid black;">{{ finance.total_income }}</td>
+          <td>
+            <a href="{% url 'finance_update' finance.pk %}" style="border: 1px solid green;">Update</a> ||
+            <a  href="{% url 'finance_delete' finance.pk %}" style="border: 1px solid red;">Delete</a>
+          </td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="13">No finances found.</td>
+        </tr>
+      {% endfor %}
+     
+    </tbody>
+  </table>
+{% endblock %}

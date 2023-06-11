@@ -1,0 +1,53 @@
+{% extends 'members/base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .small-text {
+        font-size: 14px;
+    }
+    .small-table {
+        font-size: 12px;
+    }
+    #create-custom-category {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+        width: 20%;
+        margin-left: 40%;
+    }
+</style>
+<h2 class="text-center">Custom Category List</h2>
+<div class="container">
+    <a href="{% url 'customcategory_create' %}" class="btn btn-sm btn-primary" id="create-custom-category">Create Custom Category</a>
+</div>
+
+<table class="container table table-bordered small-table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Finance</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for customcategory in customcategories %}
+            <tr style="background-color: #f9f9f9;">
+                <td>{{ customcategory.name }}</td>
+                <td>{{ customcategory.amount }}</td>
+                <td>{{ customcategory.finance }}</td>
+                <td>
+                    <a href="{% url 'customcategory_update' customcategory.pk %}">Update</a> |
+                    <a href="{% url 'customcategory_delete' customcategory.pk %}">Delete</a>
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="4">No custom categories found.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
