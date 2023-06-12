@@ -335,6 +335,8 @@ html, body {
     position: relative;
     overflow: hidden;
     white-space: nowrap;
+    
+ 
 }
 
 .changing-text-content {
@@ -352,9 +354,8 @@ html, body {
     font-weight: bold;
     font-family: 'Times New Roman', Times, serif;
     font-weight: 600;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    background-color: rgb(255, 255, 255);
+   
+    
 }
 .changing-text-content:nth-child(2) {
     /* Delay the animation */
@@ -370,14 +371,6 @@ html, body {
     display: none;
 }
 
-#base-header{
-    margin-top: 1px;
-    background-color: #f3532f;
-    color: #fff;
-    border-radius: 10px;
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
-
-  }   
 /* This class will make the text visible */
 .show {
     display: block;
