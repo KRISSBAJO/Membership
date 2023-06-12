@@ -294,3 +294,11 @@ from django import forms
 class ReportForm(forms.Form):
     start_date = forms.DateField(widget=forms.SelectDateWidget)
     end_date = forms.DateField(widget=forms.SelectDateWidget)
+
+# forms.py
+from django import forms
+
+class InviteFriendForm(forms.Form):
+    name = forms.CharField(max_length=100)
+    email = forms.EmailField()
+    sender_name = forms.CharField(max_length=100)

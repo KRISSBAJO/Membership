@@ -1,0 +1,81 @@
+{% extends 'members/base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Invite a Friend</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          font-size: 16px;
+          margin: 0;
+          padding: 0;
+        }
+        
+        .card {
+          width: 1000px;
+          margin: 0 auto;
+          border: 1px solid #ccc;
+          padding: 10px;
+          background-color: #fff;
+        }
+        
+        .card-header {
+          background-color: #337ab7;
+          color: white;
+          padding: 10px;
+          font-size: 20px;
+          font-weight: bold;
+        }
+        
+        .card-body {
+          padding: 10px;
+        }
+        
+        .card-footer {
+          padding: 10px;
+          text-align: center;
+        }
+        
+        .btn {
+          background-color: #337ab7;
+          color: white;
+          padding: 10px;
+          font-size: 16px;
+          font-weight: bold;
+          border: none;
+          cursor: pointer;
+        }
+        </style>
+</head>
+<body>
+    <div class="card">
+        <div class="card-header">
+            Invite a Friend
+        </div>
+        <div class="card-body">
+            <form method="post" action="{% url 'invite-friend' %}">
+                {% csrf_token %}
+                <input type="text" name="name" placeholder="Friend's Name" required />
+                <input type="email" name="email" placeholder="Friend's Email" required />
+                <input type="text" name="sender_name" placeholder="Your Name" required />
+
+                <div class="email-preview">
+                    <p>Dear [Friend's Name],</p>
+                    <p>I hope this card finds you well.</p>
+                    <p>I am writing to invite you to join me at Winners Chapel International Nashville for a Sunday service or Wednesday service. We meet at 9am on Sundays and 6pm on Wednesdays at 5270 Murfreesboro Road, La Vergne, TN 37086.</p>
+                    <p>Winners Chapel International is a non-denominational church that is committed to teaching the Word of God and helping people grow in their faith. We believe that everyone has a purpose in life and that God has a plan for each of us. We want to help you discover your purpose and fulfill it.</p>
+                    <p>Our Sunday services are a time of worship, teaching, and fellowship. We have a variety of music ministries that will help you to worship God in spirit and in truth. Our teaching is based on the Word of God and is designed to help you grow in your faith. Our fellowship is a time to connect with other believers and build relationships.</p>
+                    <p>I would love for you to join me at Winners Chapel International. I believe that you will find a warm welcome and a place where you can grow in your faith.</p>
+                    <p>Sincerely,</p>
+                    <p>[Your Name]</p>
+                </div>
+
+                <input type="submit" value="Invite Friend" class="btn" />
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

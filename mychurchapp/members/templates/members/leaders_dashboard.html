@@ -21,44 +21,70 @@
     .icon-space {
         margin-right: 8px;
     }
-    .button {
-        background-color: #323031;
-        border: none;
-        color: white;
-        padding: 5px 10px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 12px; /* Adjust the font-size to make it smaller */
-        margin: 4px 2px;
-        cursor: pointer;
-        width: 48%; /* Giving width to ensure two buttons per row with some space */
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-    }
     
-    .announcements {
+
+   .list-unstyleds{
         display: flex;
         flex-wrap: wrap;
         list-style: none;
         padding: 0;
         border: 1px solid #ddd;
         margin: 0;
-
+        background-color: #efefd0
 
     }
-    
-    .announcements li {
+    .list-unstyleds li {
         flex: 0 0 50%;
         padding: 5px;
         border-bottom: 1px solid #ddd;
         border-right: 1px solid #ddd;
         text-align: center;
-
     }
+    .list-unstyleds li a {
+        text-decoration: none;
+        color: #000;
+    }
+    .list-unstyleds li a:hover {
+        color: #007bff;
+    }
+    .list-unstyleds li a i {
+        margin-right: 8px;
+    }
+    .list-unstyleds li a span {
+        font-size: 12px;
+    }
+.card{
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    background-color: #efefd0
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+
+}
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.card-title{
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #323031;
+}
+.card-text{
+    text-align: center;
+    font-size: 14px;
+    color: #323031;
+}
+.card-img-top{
     
-    
+    margin-top: 10px;
+
+    margin-right: 30px;
+    width: 300px;
+    height: 120px;
+}
+
 </style>
 <!-- Main container -->
 <div class="container-fluid">
@@ -90,11 +116,12 @@
         <div class="col">
             <a href="" class="list-group-item list-group-item-action"><i class="fas fa-users icon-space"></i>Add New Members</a>
             <a href="{% url 'cellgroupmeeting_create' %}" class="list-group-item list-group-item-action"><i class="fas fa-calendar-check icon-space"></i>WSF Attendance</a>
-            <a href="{% url 'churchattendance_new' %}" class="list-group-item list-group-item-action"><i class="fas fa-church icon-space"></i>Enter Church Attendance</a>
-            <a href="{% url 'attendance_record_create' %}" class="list-group-item list-group-item-action"><i class="fas fa-user-check icon-space"></i>Enter Members Attendance</a>
+            <a href="{% url 'churchattendance_new' %}" class="list-group-item list-group-item-action"><i class="fas fa-church icon-space"></i>Church Attendance</a>
+            <a href="{% url 'attendance_record_create' %}" class="list-group-item list-group-item-action"><i class="fas fa-user-check icon-space"></i>Members Attendance</a>
+            <a href="" class="list-group-item list-group-item-action"><i class="fas fa-user-check icon-space"></i>Empty Link</a>
         </div>
         <div class="col">
-            <a href="{% url 'covenanthourofprayer_create' %}" class="list-group-item list-group-item-action"><i class="fas fa-praying-hands icon-space"></i>Enter Chop Attendance</a>
+            <a href="{% url 'covenanthourofprayer_create' %}" class="list-group-item list-group-item-action"><i class="fas fa-praying-hands icon-space"></i>Chop Attendance</a>
             <a href="{% url 'event_create' %}" class="list-group-item list-group-item-action"><i class="fas fa-calendar-plus icon-space"></i>Add Events</a>
             <a href="{% url 'carousel_image_create' %}" class="list-group-item list-group-item-action"><i class="fas fa-images icon-space"></i>Add Website Images</a>
             <a href="{% url 'testimonial_create' %}" class="list-group-item list-group-item-action"><i class="fas fa-comment-dots icon-space"></i>Add Testimonies</a>
@@ -103,9 +130,10 @@
     </div>
 
      <!-- Records URLs-->
+     <h5 href="" class="list-group-item list-group-item-action active" style="background-color: #323031; color: white">Records</h5>
 <div class="row">
     <div class="col">
-        <h5 href="" class="list-group-item list-group-item-action active" style="background-color: #323031; color: white">Records</h5>
+        
         <a href="{% url 'churchmember_list' %}" class="list-group-item list-group-item-action"><i class="fas fa-users icon-space"></i>Membership Records</a>
         <a href="{% url 'cellgroupmeeting_list' %}" class="list-group-item list-group-item-action"><i class="fas fa-calendar icon-space"></i>WSF Records</a>
         <a href="{% url 'churchattendance_list' %}" class="list-group-item list-group-item-action"><i class="fas fa-list-alt icon-space"></i>Service Attendance Records</a>
@@ -113,7 +141,7 @@
         <a href="{% url 'covenanthourofprayer_list' %}" class="list-group-item list-group-item-action"><i class="fas fa-praying-hands icon-space"></i>Chop Attendance Records</a>
     </div>
     <div class="col">
-        <h5 class="list-group-item list-group-item-action" style="background-color: #323031; color: #323031; visibility: hidden;">Placeholder</h5>
+        
         <a href="{% url 'event_list' %}" class="list-group-item list-group-item-action"><i class="fas fa-calendar-alt icon-space"></i>Events</a>
         <a href="{% url 'carousel_image_list' %}" class="list-group-item list-group-item-action"><i class="fas fa-images icon-space"></i>View Website Images</a>
         <a href="{% url 'testimonials' %}" class="list-group-item list-group-item-action"><i class="fas fa-comments icon-space"></i>View Testimony Cards</a>
@@ -121,66 +149,48 @@
         <a href="{% url 'cellgroup_list' %}" class="list-group-item list-group-item-action"><i class="fas fa-users-cog icon-space"></i>View Cell Groups</a>
         <a href="{% url 'announcement_display' %}" class="list-group-item list-group-item-action"><i class="fas fa-scroll icon-space"></i>Announcements Records</a>
     </div>
+  </div>
+ </div>
 </div>
-</div>
-</div>
-
-        <!-- Main Content -->
+ <!-- Main Content -->
 <div class="col-md-9">
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title">Announcements</h5>
-            <ul class="list-unstyled announcements">
-                <li><a href="#" class="button">Youth Retreat - April 27th</a></li>
-                <li><a href="#" class="button">Charity Bake Sale - May 4th</a></li>
-                <li><a href="#" class="button">Family Day - June 15th</a></li>
-                <li><a href="#" class="button">Community Cleanup Day - June 22nd</a></li>
-                <li><a href="#" class="button">Gospel Concert - July 2nd</a></li>
-                <li><a href="#" class="button">Vacation Bible School - July 15-19</a></li>
-            </ul>
-        </div>
-    </div>
-
-
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Weekly Activities</h5>
-                    <ul class="list-unstyled">
-                         <!-- Weekly Activities -->
-                <li><strong>Sunday Service:</strong> 10am</li>
-                <li><strong>Bible Study:</strong> Wednesday 7pm</li>
-                <li><strong>Prayer Meeting:</strong> Friday 6:30pm</li>
-                <li><strong>Youth Fellowship:</strong> Saturday 4pm</li>
-                <li><strong>Choir Rehearsal:</strong> Saturday 2pm</li>
+            <h2 class="card-title text-center">Welcome to the Leaders Dashboard</h2>
+            <div class="container">
+                <div class="row">
+                  <div class="col-md-4">
+                    <h4>Announcements</h4>
+                    <ul class="list-unstyleds">
+                      <li><a href="#">Sunday Service - 9am CST</a></li>
+                      <li><a href="#">Midweek Communion Service - Wednesday 6pm</a></li>
+                      <li><a href="#">Winners Satelite Fellowship - Saturday 5pm</a></li>
+                      <li><a href="#">Covenant Hour of Prayer - Monday - Friday 5am</a></li>
                     </ul>
+                  </div>
+                  <div class="col-md-4">
+                    <h4>Events</h4>
+                    <ul class="list-unstyleds">
+                      <li><a href="#">Prayer Squad Meeting - Friday 8-8:30pm</a></li>
+                      <li><a href="#">Evangelism - Saturday - 9:30am</a></li>
+                    </ul>
+                  </div>
+                  <div class="col-md-4">
+                    <h4>Resources</h4>
+                    <ul class="list-unstyleds">
+                      <li><a href="#">Bible Study</a></li>
+                      <li><a href="#">Worship Songs</a></li>
+                      <li><a href="#">Sermons</a></li>
+                        <li><a href="{% url 'invite-friend' %}">Invite a Friend</a></li>
+                    </ul>
+                  </div>
                 </div>
+              </div>              
             </div>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Invite a Friend</h5>
-                    <p class="card-text">Do you have a friend or contact whom you would like to invite to join our community? Extend them a heartfelt invitation to experience the love and fellowship of our community.</p>
-                    <a href="#" class="btn btn-primary">Refer a Friend</a>
-                </div>
-            </div>
-            <!-- Midweek Service Sermon Card -->
-        <!-- Midweek Service Sermon Card -->
-   
-
-    <!-- Sunday Sermon Card -->
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">Sunday Sermon</h5>
-            <p class="card-text">Title: Seek First the Kingdom of God</p>
-            <p class="card-text">Preacher: Reverend Jane Smith</p>
-            <p class="card-text">Summary: Reverend Jane takes us on a journey through the Scriptures to understand the importance of prioritizing God's Kingdom in our lives. By seeking God's Kingdom first, all other things will be added unto us.</p>
-            <!-- Read More Button -->
-            <a href="#" class="btn btn-secondary">Read More</a>
-        </div>
-    </div>
-
-    </div>
-            </div>
-        </div>
-    </div>
+          </div>
+       </div>
+     </div>
+   </div>
+</div>
 
     {% endblock %}

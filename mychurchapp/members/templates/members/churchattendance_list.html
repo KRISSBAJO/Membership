@@ -7,6 +7,7 @@
     <table class="table">
         <thead>
             <tr>
+              <th>SN</th>  
               <th>Date</th>
               <th>Men</th>
               <th>Women</th>
@@ -19,6 +20,7 @@
         <tbody>
             {% for attendance in object_list %}
               <tr>
+                <td>{{ forloop.counter }}</td>
                 <td>{{ attendance.date }}</td>
                 <td>{{ attendance.men }}</td>
                 <td>{{ attendance.women }}</td>

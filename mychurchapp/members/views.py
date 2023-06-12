@@ -1202,3 +1202,50 @@ class FinanceRecordReportView(View):
             })
 
 
+
+
+from django.core.mail import send_mail
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.views import View
+from .forms import InviteFriendForm
+
+class InviteFriendView(View):
+    def get(self, request):
+        form = InviteFriendForm()
+        return render(request, 'members/invite_friend.html', {'form': form})
+
+    def post(self, request):
+        form = InviteFriendForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            email = form.cleaned_data['email']
+            sender_name = form.cleaned_data['sender_name']
+
+            message = f"""Dear {name},
+
+I hope this card finds you well.
+
+I am writing to invite you to join me at Winners Chapel International Nashville for a Sunday service or Wednesday service. We meet at 9am on Sundays and 6pm on Wednesdays at 5270 Murfreesboro Road, La Vergne, TN 37086.
+
+Winners Chapel International is a non-denominational church that is committed to teaching the Word of God and helping people grow in their faith. We believe that everyone has a purpose in life and that God has a plan for each of us. We want to help you discover your purpose and fulfill it.
+
+Our Sunday services are a time of worship, teaching, and fellowship. We have a variety of music ministries that will help you to worship God in spirit and in truth. Our teaching is based on the Word of God and is designed to help you grow in your faith. Our fellowship is a time to connect with other believers and build relationships.
+
+I would love for you to join me at Winners Chapel International. I believe that you will find a warm welcome and a place where you can grow in your faith.
+
+Sincerely,
+{sender_name}
+"""
+
+            send_mail(
+                'Invitation to Winners Chapel International',
+                message,
+                'HOST_EMAIL', # Sender email
+                [email], # Recipient email
+                fail_silently=False,
+            )
+            
+            return HttpResponse('Email sent successfully')
+
+        return HttpResponse('Invalid form data')

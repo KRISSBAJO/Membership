@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-#$usb8yl-@8dp5fsw7^n5x1@wounc5%&*5sha2l79svb4tfrit
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app']
+ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     "crispy_bootstrap4",
     'ckeditor',
+    'easy_thumbnails',
     
 ]
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
