@@ -1,0 +1,22 @@
+{
+    "version": 2,
+    "name": "mychurchapp",
+    "builds": [
+      {
+        "src": "mychurchapp/wsgi.py",
+        "use": "@vercel/python",
+        "config": {
+          "maxLambdaSize": "15mb",
+          "pythonVersion": "3.9"
+        }
+      }
+    ],
+    "routes": [
+      { "src": "/static/(.*)", "dest": "/static/$1" },
+      { "src": "/(.*)", "dest": "mychurchapp/wsgi.py" }
+    ],
+    "env": {
+      "DJANGO_SETTINGS_MODULE": "mychurchapp.settings"
+    }
+  }
+  
