@@ -1,0 +1,276 @@
+/* Custom Styles */
+
+/* Add a smooth scrolling effect between sections */
+html {
+    scroll-behavior: smooth;
+}
+
+/* About Section */
+
+#about .lead {
+    font-size: 1.3em;
+    font-style: italic;
+    margin-bottom: 1em;
+    font-family: 'Pacifico', cursive;
+    text-decoration: none;
+    color: #137547;
+    text-shadow: 0 0 10px rgba(0,0,0,0.5);
+    margin-top: 1em;
+
+}
+.list-unstyled{
+    margin-top: 1em;
+    text-transform: none;
+    font-size: 1.1em;
+    font-family: 'Pacifico', cursive;
+    text-decoration: none;
+   
+    
+
+}
+#about .btn {
+    margin-top: 1em;
+}
+
+/* Portfolio Section */
+
+#portfolio .list-group-item {
+    font-size: 1.1em;
+    background-color: transparent;
+    border: none;
+}
+
+#portfolio h2 {
+    font-weight: bold;
+}
+
+/* Contact Section */
+
+#contact h2 {
+    font-weight: bold;
+}
+
+#contact input, #contact textarea {
+    border-radius: 0;
+}
+
+#contact button {
+    font-size: 1.2em;
+}
+
+/* Footer */
+
+footer {
+    font-size: 0.9em;
+}
+/* Header Section */
+
+/* Header Section */
+
+/* Header Section */
+
+header {
+   background-color: #ffffff;
+    padding: 0;
+    margin: 0;  
+    border-bottom: 1px solid #e7e7e7;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+    border-radius: 5px;
+    margin-top: 20px;  
+}
+nav {
+    background-color: #aebfb7;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    margin-bottom: 20px;
+  }
+  nav a {
+    color: #137547;
+    }
+    nav:hover {
+        background-color: #ffffff;
+        color: white;
+    }
+  
+    nav-link {
+        font-size: 25px;
+        font-weight: bold;
+        color: #78827e;
+    }
+    .navbar-brand {
+        font-size: 25px;
+        font-weight: bold;
+        color: #78827e;
+    }
+    .navbar-brand:hover {
+        color: white;
+    }
+    .navbar-brand:active {
+        color: white;
+    }
+    .navbar-brand:focus {
+        color: white;
+    }
+    .custom-image-size {
+        width: 300px;
+        height: 200px;
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+        border-radius: 5px;
+
+    }
+    #learn-more {
+        margin-top: 13px;
+        background-color: #137547;
+        color: white;
+
+    }
+    #learn-more:hover {
+        background-color: red;
+        color: white;
+    }
+    #learn-more:active {
+        background-color: #007bff;
+        color: white;
+    }
+    #learn-more:focus {
+     
+        color: white;
+    }
+    #learn-more:visited {
+      
+        color: white;
+    }
+    .about{
+        margin-bottom: 20px;
+        background-color: #f2ebeb;
+        color: rgb(0, 0, 0);
+        padding: 10px;
+        border-radius: 5px;
+         
+    }
+.section-image {
+        width: 50%;
+        height: 200px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        box-shadow: inset 0px 0px 100px 0px rgba(0,0,0,0.75);
+        border-radius: 5px;
+        transition: transform 0.3s ease-in-out; /* Add this line for transition effect */
+        margin-left: 20%;
+    }
+.portfolio p{
+    margin-bottom: 30px;
+    margin-top: 0;
+    font-family: 'Pacifico', cursive;
+    width: 50% ;
+    color: rgb(0, 0, 0);
+    text-shadow: 0 0 10px rgba(0,0,0,0.5);
+    margin-left: 20%;
+
+} 
+.section-image:hover {
+        transform: scale(1.1); /* Add this line to zoom in on hover */
+        box-shadow: inset 0px 0px 100px 0px rgba(0,0,0,0.75);
+        border-radius: 5px;
+    }
+.section-image:active {
+        box-shadow: inset 0px 0px 100px 0px rgba(0,0,0,0.75);
+        border-radius: 5px;
+    }
+.section-image:focus {
+        box-shadow: inset 0px 0px 100px 0px rgba(0,0,0,0.75);
+        border-radius: 5px;
+    }
+.section-image:visited {
+        box-shadow: inset 0px 0px 100px 0px rgba(0,0,0,0.75);
+        border-radius: 5px;
+    }
+.lead-text {
+        margin-bottom: 20px;
+    }
+.lead-text:hover {
+        color: #137547;
+    }
+    
+.lead-text:active {
+        color: #137547;
+    }
+.section-header{
+        margin-bottom: 25px;
+        background-color: #137547;
+        width: 50%;
+        color: #ffffff;
+        padding: 8px;
+        border-radius: 5px; 
+        font-weight: bold;
+        margin-left: 20%;
+    }
+.section-header:hover {
+        background-color: #000000;
+        color: white;
+    }
+.section-header:active {
+        background-color: #137547;
+        color: white;
+    }
+.section-header:focus {
+        background-color: #137547;
+        color: white;
+    }
+.section-header:visited {
+        background-color: #137547;
+        color: white;
+    }
+.section-text {
+        margin-bottom: 20px;
+    }
+.section-text:hover {
+        color: #137547;
+    }
+.section-text:active {
+        color: #137547;
+    }
+.section-text:focus {
+        color: #137547;
+    }
+.section-text:visited {
+        color: #137547;
+    }
+.section-button {
+        margin-bottom: 20px;
+        background-color: #137547;
+        color: white;
+        padding: 10px;
+        border-radius: 5px; 
+    }
+.view-portfolio{
+    background-color: #137547;
+    color: white;
+ } 
+ .contact{
+    margin-bottom: 20px;
+    background-color: #72d223;
+    color: white;
+    padding: 10px;
+    border-radius: 5px; 
+ }
+
+.flat-btn {
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.flat-btn:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+input:focus, textarea:focus {
+    border-color: #007bff;
+    box-shadow: none;
+}

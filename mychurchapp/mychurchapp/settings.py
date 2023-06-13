@@ -19,6 +19,18 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
+
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+cloudinary.config(
+  cloud_name = "dkr0odvfi",
+  api_key = "683741611376813",
+  api_secret = "s72st3LvmTnpSCxNkDmv5F6EwqQ"
+)
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -36,6 +48,7 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 # Application definition
 
 INSTALLED_APPS = [
+    'cloudinary_storage',
     'accounts.apps.AccountsConfig',
     'members.apps.MembersConfig',
     'django.contrib.admin',
@@ -48,8 +61,17 @@ INSTALLED_APPS = [
     "crispy_bootstrap4",
     'ckeditor',
     'easy_thumbnails',
+    'cloudinary',
+    
+    
     
 ]
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dkr0odvfi',
+    'API_KEY': '683741611376813',
+    'API_SECRET': 's72st3LvmTnpSCxNkDmv5F6EwqQ',
+}
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
@@ -148,14 +170,26 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'static'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR,  'members', 'static'),
-]
+DEFAULT_FILE_STORAGE = 'mychurchapp.custom_cloudinary_storage.CustomMediaCloudinaryStorage'
+STATICFILES_STORAGE = 'mychurchapp.custom_cloudinary_storage.CustomStaticHashedCloudinaryStorage'
+
 
 
 # settings.py
+
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'static'
+#DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# settings.py
+#DEFAULT_FILE_STORAGE = 'mychurchapp.custom_cloudinary_storage.CustomMediaCloudinaryStorage'
+
+
+# STATICFILES_DIRS = [
+#    os.path.join(BASE_DIR,  'members', 'static'),
+#  ]
+
+
+# # settings.py
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'members', 'media')
@@ -189,3 +223,4 @@ CELERY_BEAT_SCHEDULE = {
         'schedule': timedelta(days=1),
     },
 }
+

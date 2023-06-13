@@ -1249,3 +1249,7 @@ Sincerely,
             return HttpResponse('Email sent successfully')
 
         return HttpResponse('Invalid form data')
+
+
+class LandingPageView(TemplateView):
+    template_name = 'members/landing_page.html'
